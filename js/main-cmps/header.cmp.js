@@ -1,4 +1,5 @@
 'use strict';
+
 import {
     filters
 } from '../../data/filters.js';
@@ -11,6 +12,7 @@ export default {
                 <img src="imgs/logo.svg"/>
                 <h1>Appsus</h1>
             </div>
+            <component v-if="this.filter" :is="this.filter.component"></component>
             <label for="header-nav-toggler-label">Input Nav</label>
             <input type="checkbox" id="header-nav-toggler" />
             <nav>
@@ -47,10 +49,12 @@ export default {
     watch: {
         '$route': {
             handler(route) {
-                console.log('routes', route);
-                if (route.path === '/email') {
+                if (route.path.includes('/email')) {
                     this.filter = filters.cmps.find(filter => filter.type === 'email');
-                }
+                } 
+                // else if (route.path.includes('/keep')) {
+
+                // }
             },
             deep: true
         }
