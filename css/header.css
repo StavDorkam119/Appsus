@@ -1,14 +1,29 @@
 
 
 .app-header {
+    position: sticky;
+    top: 0;
     display: flex;
     justify-content: space-between;
     align-items: center;
     background-color: var(--fifth-color);
-    width: calc(100vw - 15px);
+    width: 100vw;
     margin:  0 auto;
     padding: 0 1em;
     min-height: 70px;
     border-radius: 0 0 20px 20px;
 }
 
+.app-header .logo {
+    display: flex;
+    align-items: center;
+}
+
+.app-header .logo img {
+    width: 100px;
+    display: inline-block;
+}
+
+.app-header .logo h1 {
+    display: inline-block;
+}
