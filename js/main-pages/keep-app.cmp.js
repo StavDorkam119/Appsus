@@ -15,7 +15,6 @@ export default {
         }
     },
     
-    
     created() {
         keepService.query()
             .then(res => this.keeps = res) 
