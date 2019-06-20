@@ -9,7 +9,7 @@ const EMAIL_KEY = 'emails';
 
 
 export const emailService = {
-    query
+    query,
 }
 
 
