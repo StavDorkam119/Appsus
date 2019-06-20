@@ -6,7 +6,12 @@ export default {
     template:`
     <section class="keep-app-container">
         <h1>Keep App</h1>
-        <div v-for="keep in keeps">{{keep.title}}</div>
+        <div class="keeps-container" >
+        <div class="keep-item" v-for="keep in keeps">
+        {{keep.title}}
+        <img src=""/>
+        </div>
+        </div>
     </section>`,
 
     data() {
@@ -14,7 +19,12 @@ export default {
             keeps: null,
         }
     },
-    
+    methods: {
+
+    },
+    computed: {
+        
+    },
     
     created() {
         keepService.query()
@@ -22,3 +32,4 @@ export default {
     }
 
 }
+
