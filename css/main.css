@@ -3,10 +3,10 @@
 
 
 :root {
-    --primary-color: #A63A50;
-    --second-color: #E38C3E;
-    --third-color: #6F82C8;
-    --fourth-color: #F3AE68;
+    --primary-color: rgb(150, 114, 85);
+    --second-color: rgb(27, 95, 72);
+    --third-color: rgb(120, 159, 233);
+    --fourth-color: rgb(255, 180, 106);
     --fifth-color: #F8FAF8;
 }
 
@@ -17,6 +17,7 @@
 body {
     margin: 0;
     background-color: var(--primary-color);
+    color: var(--fifth-color);
 }
 
 
