@@ -4,7 +4,7 @@ export default {
     name: 'appHeader',
     template: `
         <header class="app-header">
-            <div>Logo</div>
+            <div class="logo"><img /></div>
             <h1>Filter?</h1>
             <label for="header-nav-toggler-label">Input Nav</label>
             <input type="checkbox" id="header-nav-toggler" />
