@@ -1,14 +1,18 @@
 'use strict';
 
 import appHeader from './main-cmps/header.cmp.js';
-import homePage from './main-cmps/home.cmp.js';
+import routes from './routes.js';
+
+const theRoutes = new VueRouter({
+    routes: routes
+})
 
 var app = new Vue({
     el: '#app',
     template: `
     <div>
         <app-header></app-header>
-        <home-page></home-page>
+        <router-view></router-view>
     </div>
     `,
     mounted() {
@@ -25,6 +29,6 @@ var app = new Vue({
     },
     components: {
         appHeader,
-        homePage
     },
+    router: theRoutes 
 })
