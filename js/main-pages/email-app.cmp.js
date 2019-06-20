@@ -1,17 +1,24 @@
 
 import {emailService} from '../services/email.service.js';
-
+import sideBar from '../apps/email/cmps/sidebar.cmp.js';
+import emailList from '../apps/email/pages/email-list.cmp.js';
 
 export default {
     name: 'EmailApp',
     template:`
     <section class="email-app-container">
-        <div>SideBar</div>
-        <div>Email-List</div>
+        <side-bar></side-bar>
+        <email-list :emails="emailsToDisplay"></email-list>
     </section>`,
     data () {
         return {
-            emails: null
+            emails: null,
+            filter: null
+        }
+    },
+    computed: {
+        emailsToDisplay () {
+            if(!this.filter) return this.emails
         }
     },
     created () {
@@ -19,5 +26,9 @@ export default {
             .then(res => {
                 this.emails = res
             })
+    },
+    components: {
+        sideBar,
+        emailList
     }
 }

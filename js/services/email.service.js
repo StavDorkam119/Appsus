@@ -1,3 +1,11 @@
+import {
+    storageService
+} from './storage.service.js';
+import {
+    utilService
+} from './util.service.js';
+
+const EMAIL_KEY = 'emails';
 
 
 export const emailService = {
@@ -8,11 +16,16 @@ export const emailService = {
 
 
 function query() {
-    return Promise.resolve(generateEmails())
+    let emails = storageService.load(EMAIL_KEY);
+    if (!emails || !emails.length) {
+        emails = _generateEmails()
+        storageService.store(EMAIL_KEY, emails);
+    }
+    return Promise.resolve(emails);
 }
 
 
-function generateEmails() {
+function _generateEmails() {
     return [
         {
           "_id": "5d0b5d5513261fbb19f1da9d",
