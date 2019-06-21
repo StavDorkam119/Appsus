@@ -1,0 +1,21 @@
+
+.email-filter-container {
+    display: flex;
+    align-items: center;
+}
+
+.email-filter-container input, 
+.email-filter-container select
+{
+    padding: 5px;
+    margin-right: 0.5em;
+    border-radius: 5px;
+    border: 1px solid var(--primary-color);
+    position: relative;
+}
+.email-filter-container input:focus, 
+.email-filter-container select:focus
+{
+    outline: none;
+}
+

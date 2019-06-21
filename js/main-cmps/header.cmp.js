@@ -32,7 +32,7 @@ export default {
                         </router-link>
                     </li>
                     <li>
-                        <router-link to="/keep">
+                        <router-link to="/keep/main">
                             Keep
                         </router-link>
                     </li>
@@ -48,7 +48,9 @@ export default {
         }
     },
     created () {
-        window.addEventListener('resize', this.checkMobileMode)
+        window.addEventListener('resize', this.checkMobileMode);
+        // debugger;
+        this.checkForFilter(this.$route)
     },
     methods: {
         checkMobileMode() {
@@ -57,6 +59,12 @@ export default {
         },
         toggleMenu() {
             this.showMobileMenu = !this.showMobileMenu;
+        },
+        checkForFilter(route) {
+            if (route.path.includes('/email')) {
+                this.filter = filters.cmps.find(filter => filter.type === 'email');
+            } 
+            else (this.filter) = null;
         }
     },
     computed: {
@@ -67,12 +75,7 @@ export default {
     watch: {
         '$route': {
             handler(route) {
-                if (route.path.includes('/email')) {
-                    this.filter = filters.cmps.find(filter => filter.type === 'email');
-                } 
-                // else if (route.path.includes('/keep')) {
-
-                // }
+                this.checkForFilter(route);
             },
             deep: true
         }

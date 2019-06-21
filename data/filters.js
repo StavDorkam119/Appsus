@@ -8,9 +8,7 @@ export const filters = {
         {
             type: 'email',
             pageUrl: '/email',
-            component: {
-                emailFilter
-            }
+            component: emailFilter
         }
     ]
 }

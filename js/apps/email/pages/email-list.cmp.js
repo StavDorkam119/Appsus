@@ -12,5 +12,6 @@ export default {
     props: ['emails'],
     components: {
         emailPreview
-    }
+    },
+    
 }

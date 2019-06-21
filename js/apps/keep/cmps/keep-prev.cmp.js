@@ -5,7 +5,9 @@ export default {
     name: 'keepPrev',
     template: `
     <section class="keep-prev">
-    <h2>keep prev</h2>
+    <router-link :to="keepUrl">
+        <h2>keep prev</h2>
+    </router-link>
     </section>
     `,
    
@@ -24,7 +26,9 @@ export default {
        
     },
     computed: {
-        
+        keepUrl() {
+            return ''
+        }
     },
     components: {
     }

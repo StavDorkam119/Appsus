@@ -4,6 +4,7 @@
 @import './header.css';
 @import './home.css';
 @import './keep-app.css';
+@import './email/email-filter.css';
 
 @font-face {
     font-family: 'Karla';
