@@ -10,9 +10,14 @@ const EMAIL_KEY = 'emails';
 
 export const emailService = {
     query,
+    getEmailById
 }
 
-
+function getEmailById(id) {
+    const emails = storageService.load(EMAIL_KEY);
+    const email = emails.find(email => email.id === id);
+    return Promise.resolve(email);
+}
 
 
 function query() {

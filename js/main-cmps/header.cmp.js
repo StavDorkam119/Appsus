@@ -1,4 +1,5 @@
 'use strict';
+
 import {
     filters
 } from '../../data/filters.js';
@@ -11,12 +12,12 @@ export default {
                 <img src="imgs/logo.svg"/>
                 <h1>Appsus</h1>
             </div>
-            <label for="header-nav-toggler-label">Input Nav</label>
-            <input type="checkbox" id="header-nav-toggler" />
-            <nav>
+            <component v-if="this.filter" :is="this.filter.component"></component>
+            <div class="toggle-menu" @click="toggleMenu"><i class="fas fa-bars"></i></div>
+            <nav class="header-links-container" :class="menuClass">
                 <ul>
                     <li>
-                        <router-link to="/">
+                        <router-link to="/" exact>
                             Home
                         </router-link>
                     </li>
@@ -41,16 +42,37 @@ export default {
     `,
     data() {
         return {
-            filter: null
+            filter: null,
+            mobileMode: true,
+            showMobileMenu: false
+        }
+    },
+    created () {
+        window.addEventListener('resize', this.checkMobileMode)
+    },
+    methods: {
+        checkMobileMode() {
+            if (window.innerWidth <= 991) this.mobileMode = true; 
+            else this.mobileMode = false;
+        },
+        toggleMenu() {
+            this.showMobileMenu = !this.showMobileMenu;
+        }
+    },
+    computed: {
+        menuClass() {
+            if (this.mobileMode && this.showMobileMenu) return 'shown'; 
         }
     },
     watch: {
         '$route': {
             handler(route) {
-                console.log('routes', route);
-                if (route.path === '/email') {
+                if (route.path.includes('/email')) {
                     this.filter = filters.cmps.find(filter => filter.type === 'email');
-                }
+                } 
+                // else if (route.path.includes('/keep')) {
+
+                // }
             },
             deep: true
         }
