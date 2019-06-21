@@ -13,12 +13,11 @@ export default {
                 <h1>Appsus</h1>
             </div>
             <component v-if="this.filter" :is="this.filter.component"></component>
-            <label for="header-nav-toggler-label">Input Nav</label>
-            <input type="checkbox" id="header-nav-toggler" />
-            <nav>
+            <div class="toggle-menu" @click="toggleMenu"><i class="fas fa-bars"></i></div>
+            <nav class="header-links-container" :class="menuClass">
                 <ul>
                     <li>
-                        <router-link to="/">
+                        <router-link to="/" exact>
                             Home
                         </router-link>
                     </li>
@@ -43,7 +42,26 @@ export default {
     `,
     data() {
         return {
-            filter: null
+            filter: null,
+            mobileMode: true,
+            showMobileMenu: false
+        }
+    },
+    created () {
+        window.addEventListener('resize', this.checkMobileMode)
+    },
+    methods: {
+        checkMobileMode() {
+            if (window.innerWidth <= 991) this.mobileMode = true; 
+            else this.mobileMode = false;
+        },
+        toggleMenu() {
+            this.showMobileMenu = !this.showMobileMenu;
+        }
+    },
+    computed: {
+        menuClass() {
+            if (this.mobileMode && this.showMobileMenu) return 'shown'; 
         }
     },
     watch: {

@@ -1,6 +1,18 @@
+
+/* Font Families */
+
 @import './header.css';
 @import './home.css';
 @import './keep-app.css';
+
+@font-face {
+    font-family: 'Karla';
+    src: url('/css/fonts/Karla/Karla-Regular.ttf');
+}
+
+
+
+
 
 
 :root {
