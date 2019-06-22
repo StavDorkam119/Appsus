@@ -76,8 +76,17 @@ export const utilService = {
     makeLorem,
     makeId,
     colorLog,
-    timeConverter
+    timeConverter,
+    checkIfMobile
 }
+
+
+function checkIfMobile () {
+    if (window.innerWidth <= 560) return true;
+    else return false;
+}
+
+
 
 function timeConverter(UNIX_timestamp){
     var a = new Date(UNIX_timestamp * 1000);

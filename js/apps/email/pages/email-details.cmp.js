@@ -2,22 +2,49 @@ import {
     emailService
 } from '../../../services/email.service.js';
 
+
 export default {
     name: 'EmailDetails',
     template: `
     <section class="email-details-container" v-if="this.email">
-        <h1>{{this.email.name}}</h1>
+        <div class="crud-buttons">
+            <router-link to="/email" ><i class="fas fa-arrow-left"></i>Back to Inbox</router-link>
+            <button><i class="fas fa-trash"></i></button>
+            <button>Reply</button>
+            <button @click="toggleStarred">
+                <i class="far fa-star" v-if="!email.isStarred"></i>
+                <i class="fas fa-star" v-else="email.isStarred"></i>
+            </button>
+        </div>
+        <div>
+            <h3>{{email.name}}</h3>
+            <span>{{email.subject}}</span>
+            <span>Date Recieved: {{dateFormatted}}</span>
+        </div>
+        <br>
+        <p>{{email.body}}</p>
         
     </section>`,
     data() {
         return {
             email: null,
+            dateFormatted: null
+        }
+    },
+    methods: {
+        toggleStarred() {
+            this.email.isStarred = !this.email.isStarred;
+            emailService.updateEmail(this.email);
         }
     },
     created() {
         const emailId = this.$route.params.emailId;
         emailService.getEmailById(emailId)
-                .then(res => this.email = res)
+                .then(res => {
+                    this.email = res
+                    this.dateFormatted = new Date (this.email.timestamp)
+                })
+        
     },
     watch: {
         '$route.params.emailId'(emailId) {

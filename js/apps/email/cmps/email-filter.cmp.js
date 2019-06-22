@@ -12,19 +12,29 @@ export default {
                 <option value="false">Unread</option>
             </select>
             <select v-model="filter.sortOptions">
-                <option value="">None</option>
+                <option value="none">None</option>
                 <option value="name">Name</option>
                 <option value="title">Title</option>
                 <option value="date">Date</option>
             </select>
             </form>
         </section>`,
+    created() {
+        eventBus.$on('update-filter', update => {
+            if (update === 'none') this.filter.isStarredOn = false;
+            else if (update === 'starred') this.filter.isStarredOn = true;
+            // else if (update === )
+        })
+    },
     data() {
         return {
             filter: {
                 searchTerm: '',
                 filterOptions: 'none',
-                sortOptions: '',
+                sortOptions: 'none',
+                isStarredOn: false,
+                showSent: false,
+                showDrafts: false
             }
         }
     },

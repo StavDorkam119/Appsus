@@ -13,7 +13,8 @@ export default {
     `,
     props: ['email'],
     created() {
-        this.dateTimeStamp = new Date(this.email.sentAtTimestamp)
+        // debugger;
+        this.dateTimeStamp = new Date(this.email.timestamp)
     },
     data () {
         return {
@@ -28,7 +29,8 @@ export default {
             if (this.email.body.length > 30) return this.email.body.substring(0, 30) + '...';
         },
         dateFormatted() {
-            return this.dateTimeStamp.toDateString().split(' ').slice(1,3).join(' ')
+            // debugger;
+            return this.dateTimeStamp.toDateString();
         },
         emailUrl() {
             return '/email/' + this.email.id;
