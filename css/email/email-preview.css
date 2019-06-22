@@ -1,0 +1,27 @@
+
+.email-preview {
+    text-decoration: none;
+    color: var(--fifth-color);
+    display: flex;
+    align-items: center;
+    height: 100px;
+    justify-content: space-between;
+    padding: 0 20px;
+    background-color: rgb(73, 86, 110);
+    border-bottom: 1px solid black;
+}
+
+.email-preview.read {
+    background-color: lightgreen;
+}
+
+@media (max-width: 991px) {
+    .email-preview {
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: center;
+    }
+    .email-preview span:last-child {
+        align-self: flex-end;
+    }
+}

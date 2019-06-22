@@ -4,13 +4,11 @@ import {utilService} from '../../../services/util.service.js';
 export default {
     name: 'EmailPreview',
     template: `
-    <router-link :to="emailUrl">
-        <li class="email-preview-container">
-            <span>{{email.name}}</span>|
-            <span>{{email.subject}}</span> - 
-            <span>{{bodySize}}</span>|
-           <span>{{this.dateFormatted}}</span>
-        </li>
+    <router-link :to="emailUrl" class="email-preview" :class="isRead">
+            <span>{{email.name}}</span>
+            <span>{{email.subject}}</span> 
+            <span>{{bodySize}}</span>
+            <span>{{this.dateFormatted}}</span>
     </router-link>
     `,
     props: ['email'],
@@ -34,6 +32,9 @@ export default {
         },
         emailUrl() {
             return '/email/' + this.email.id;
+        },
+        isRead() {
+            if (this.email.isRead) return 'read';
         }
     },
     components: {

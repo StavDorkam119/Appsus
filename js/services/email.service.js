@@ -10,7 +10,8 @@ const EMAIL_KEY = 'emails';
 
 export const emailService = {
     query,
-    getEmailById
+    getEmailById,
+    filterEmails
 }
 
 function getEmailById(id) {
@@ -27,6 +28,42 @@ function query() {
         storageService.store(EMAIL_KEY, emails);
     }
     return Promise.resolve(emails);
+}
+
+function filterEmails(emails, filter) {
+  const regex = new RegExp(`(${filter.searchTerm})`, 'ig');
+  let filteredEmails = JSON.parse(JSON.stringify(emails));
+  if (filter.searchTerm) {
+    filteredEmails = filteredEmails.filter(email => {
+      return (regex.test(email.body) || regex.test(email.subject) || regex.test(email.name))
+    })
+  }
+  if (filter.filterOptions !== 'none') {
+    filteredEmails = filteredEmails.filter(email => {
+      return (email.isRead === filter.filterOptions)
+    })
+  }
+  if (filter.sortOptions === 'name') {
+    filteredEmails.sort((a,b) => {
+      if (a.name.toLowerCase() < b.name.toLowerCase()) return -1;
+      if (a.name.toLowerCase() > b.name.toLowerCase()) return 1;
+      return 0
+    })
+  }
+  else if (filter.sortOptions === 'title') {
+    filteredEmails.sort((a,b) => {
+      if (a.subject.toLowerCase() < b.subject.toLowerCase()) return -1;
+      if (a.subject.toLowerCase() > b.subject.toLowerCase()) return 1;
+      return 0
+    })
+  } else if (filter.sortOptions === 'date') {
+    filteredEmails.sort((a,b) => {
+      if (a.sentAtTimestamp - b.sentAtTimestamp < 0) return -1;
+      if (a.sentAtTimestamp - b.sentAtTimestamp > 0) return 1;
+      return 0;
+    })
+  }
+  return filteredEmails
 }
 
 
