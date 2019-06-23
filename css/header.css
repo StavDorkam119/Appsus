@@ -38,6 +38,13 @@
     display: none;
 }
 
+.toggle-sidebar {
+    font-size: 1.5em;
+    align-self: center;
+    margin-left: 10px;
+    /* display: none; */
+}
+
 .header-links-container {
     width: 300px;
 }
@@ -91,13 +98,15 @@
     .header-links-container {
         position: absolute;
         top: 100%;
-        left: 0;
-        width: 100%;
-        transform: translateX(-100%);
+        right: 0;
+        width: 261px;
+        background: wheat;
     }
 
     .header-links-container ul {
-        display: block;
+        display: grid;
+        grid-gap: 10px;
+        grid-template-columns: repeat(auto-fit, minmax(70px, 1fr))
     }
 
     .header-links-container ul li {

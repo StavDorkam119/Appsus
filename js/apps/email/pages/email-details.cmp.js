@@ -2,6 +2,7 @@ import {
     emailService
 } from '../../../services/email.service.js';
 
+import eventBus from '../../../services/event-bus.service.js';
 
 export default {
     name: 'EmailDetails',
@@ -10,7 +11,7 @@ export default {
         <div class="crud-buttons">
             <router-link to="/email" ><i class="fas fa-arrow-left"></i>Back to Inbox</router-link>
             <button @click="deleteEmail"><i class="fas fa-trash"></i></button>
-            <button>Reply</button>
+            <button @click="replyToEmail">Reply</button>
             <button @click="toggleStarred">
                 <i class="far fa-star" v-if="!email.isStarred"></i>
                 <i class="fas fa-star" v-else="email.isStarred"></i>
@@ -37,19 +38,25 @@ export default {
             emailService.updateEmail(this.email);
         },
         deleteEmail() {
-            if (confirm('Are you sure you want to delete this email?')) emailService.deleteEmail(this.email.id);
-            this.$router.push('/email');
+            if (confirm('Are you sure you want to delete this email?')) {
+                emailService.deleteEmail(this.email.id);
+                this.$router.push('/email');
+            }
+        },
+        replyToEmail() {
+            eventBus.$emit('reply-to-email', this.email)
+            this.$router.push(`/email/compose/${this.email.id}`);
         }
     },
     created() {
         const emailId = this.$route.params.emailId;
         emailService.getEmailById(emailId)
-                .then(res => {
-                    this.email = res
-                    this.email.isRead = true;
-                    emailService.updateEmail(this.email);
-                    this.dateFormatted = new Date (this.email.timestamp)
-                })
+            .then(res => {
+                this.email = res
+                this.email.isRead = true;
+                emailService.updateEmail(this.email);
+                this.dateFormatted = new Date(this.email.timestamp)
+            })
     },
     watch: {
         '$route.params.emailId'(emailId) {

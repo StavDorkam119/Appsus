@@ -13,7 +13,8 @@ export const emailService = {
     getEmailById,
     filterEmails,
     updateEmail,
-    deleteEmail
+    deleteEmail,
+    addEmail
 }
 
 function getEmailById(id) {
@@ -30,6 +31,12 @@ function query() {
         storageService.store(EMAIL_KEY, emails);
     }
     return Promise.resolve(emails);
+}
+
+function addEmail(email) {
+  const emails = storageService.load(EMAIL_KEY);
+  emails.unshift(email);
+  storageService.store(EMAIL_KEY, emails);
 }
 
 function updateEmail(updatedEmail) {
@@ -51,6 +58,9 @@ function filterEmails(emails, filter) {
   const regex = new RegExp(`(${filter.searchTerm})`, 'ig');
   let filteredEmails = JSON.parse(JSON.stringify(emails));
 
+  if (filter.showSent) {
+    filteredEmails = filteredEmails.filter(email => email.wasSentByUser)
+  }
   if (filter.searchTerm) {
     filteredEmails = filteredEmails.filter(email => {
       return (regex.test(email.body) || regex.test(email.subject) || regex.test(email.name))

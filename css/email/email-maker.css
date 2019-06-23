@@ -33,8 +33,41 @@
     font-family: 'Karla', sans-serif;
     resize: none;
     flex-grow: 1;
+    border-bottom: none;
+}
+
+.email-maker-container div {
+    display: flex;
+    justify-content: space-between;
 }
 
 .email-maker-container button {
-    padding: 10px;
+    padding: 10px 1.5em;
+    align-self: flex-start;
+    border-radius: 10px;
+    background: var(--fourth-color);
+    border: 0;
+    margin: 5px 0 5px 5px;
+    outline: none;
+    font-size: 1.5em;
+    font-family: 'Lato', sans-serif;
+    color: var(--fifth-color);
+    transition: all 0.2s;
+}
+.email-maker-container button:active, 
+.email-maker-container button:hover  {
+    background: #41be41;
+}
+
+.email-maker-container div > button:nth-child(2) {
+    margin: 0;
+    margin: 5px 5px 5px 0px;
+}
+
+@media (max-width: 560px) {
+    .email-maker-container {
+        margin: 0;
+        width: 100%;
+        height: calc(100vh - 70px);
+    }
 }
