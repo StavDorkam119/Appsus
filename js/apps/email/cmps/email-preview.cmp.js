@@ -1,11 +1,15 @@
 
 import {utilService} from '../../../services/util.service.js';
+import {emailService} from '../../../services/email.service.js';
+
 
 export default {
     name: 'EmailPreview',
     template: `
     <router-link :to="emailUrl" class="email-preview" :class="isRead">
+            
             <span>
+            <input type="checkbox" :checked="isRead" @click.stop="toggleRead"/>
                 <span v-if="!email.isRead"><i class="fas fa-envelope"></i></span> 
                 <span v-else><i class="far fa-envelope-open"></i></span> 
                 {{email.name}}
@@ -19,7 +23,11 @@ export default {
     `,
     props: ['email'],
     methods: {
-  
+        toggleRead() {
+            const updatedEmail = this.email;
+            updatedEmail.isRead = !updatedEmail.isRead
+            emailService.updateEmail(updatedEmail);
+        }
     },
     computed: {
         bodySize() {

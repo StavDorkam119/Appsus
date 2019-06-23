@@ -97,7 +97,7 @@ function filterEmails(emails, filter) {
 }
 
 function _generateEmails() {
-  let emails = [
+  return [
     {
       "id": "5d0e2bd57ff4d574b2ff867b",
       "body": "Adipisicing deserunt in laborum enim. Aute in minim enim ut fugiat reprehenderit esse id adipisicing Lorem adipisicing officia aliqua labore. Veniam adipisicing et ipsum laborum. Quis commodo sunt dolor pariatur officia occaecat proident exercitation in Lorem duis aute anim. Sint qui enim labore sint consectetur. Nulla esse velit ullamco culpa laborum exercitation aliquip nulla mollit commodo incididunt.\r\nExcepteur duis sint nisi qui consectetur deserunt sit duis. Aliqua commodo laboris culpa et duis labore duis tempor sit duis incididunt proident. Eiusmod veniam cillum consequat sint.\r\n",

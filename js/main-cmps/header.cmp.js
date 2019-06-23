@@ -4,18 +4,26 @@ import {
     filters
 } from '../../data/filters.js';
 
+
 import {utilService} from '../services/util.service.js';
+
+import eventBus from '../services/event-bus.service.js';
 
 export default {
     name: 'appHeader',
     template: `
         <header class="app-header">
-            <div class="logo">
+            <div class="logo" v-if="!this.mobileMode">
+                <img src="imgs/logo.svg"/>
+                <h1>Appsus</h1>
+            </div>
+            <div class="toggle-sidebar" v-if="sideBarIcon" @click="toggleSidebar"><i class="fas fa-bars"></i></div>
+            <div class="logo" v-if="this.mobileMode">
                 <img src="imgs/logo.svg"/>
                 <h1>Appsus</h1>
             </div>
             <component v-if="this.filter && !this.mobileMode" :is="this.filter.component"></component>
-            <div class="toggle-menu" @click="toggleMenu"><i class="fas fa-bars"></i></div>
+            <div class="toggle-menu" @click="toggleMenu"><i class="fab fa-flickr"></i></div>
             <nav class="header-links-container" :class="menuClass">
                 <ul>
                     <li>
@@ -62,6 +70,9 @@ export default {
         toggleMenu() {
             this.showMobileMenu = !this.showMobileMenu;
         },
+        toggleSidebar () {
+            eventBus.$emit('show-sidebar')
+        },
         checkForFilter(route) {
             if (route.path.includes('/email')) {
                 this.filter = filters.cmps.find(filter => filter.type === 'email');
@@ -72,6 +83,9 @@ export default {
     computed: {
         menuClass() {
             if (this.showMobileMenu) return 'shown'; 
+        },
+        sideBarIcon() {
+            if (this.mobileMode && this.$route.path.includes('/email')) return true;
         }
     },
     watch: {
@@ -83,6 +97,6 @@ export default {
         }
     },
     components: {
-        filters
+        filters,
     }
 }
