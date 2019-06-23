@@ -1,13 +1,198 @@
-.keeps-container {
+.keeps-container, .pined-container {
     display: grid;
     grid-auto-flow: row dense;
     grid-template-columns: repeat( auto-fit, minmax(250px, 1fr));
+    grid-gap: 5px;
 }
 
 .keep-item {
+    display: flex;
+    align-self: auto;
+}
+
+.keep-prev {
     display: inline-block;
-    width: 100px;
+    border: 1px solid black;
+    margin: 5px;
+    padding: 20px;
+    width: 100%;
+    text-align: center;
+}
+
+.keep-prev a {
+    text-decoration: none;
+    color: rgb(0, 0, 0);
 }
 
 
+.keep-creator {
+    /* background-color:lightyellow; */
+    color: black;
+    margin: 0 auto;
+    max-width: 500px;
+    padding: 20px;
+}
+
+.keep-creator > * {
+    margin: 5px;
+}
+
+.keep-creator input {
+    background-color: rgba(0, 0, 0, 0);
+    border: none;
+    padding: 5px;
+    font-size: 16px;
+    width: 300px;
+}
+
+.keep-menu {
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+    border: 1px solid rgb(92, 92, 92);
+    margin-top: 20px;
+}
+
+.keep-menu > * {
+    margin: 5px;
+    cursor: pointer;
+}
+
+.btn-back {
+    cursor: pointer;
+}
+
+.btn-delete {
+    cursor: pointer;
+}
+
+.keep-menu input{
+    width: 30px;
+}
+
+.keep-menu .color-picker {
+    height: 30px;
+    padding: 0;
+}
+
+.btn-pin {
+    cursor: pointer;
+}
+
+/* CHECKLIST */
+
+
+
+.item-container.flex {
+    border-bottom: 1px solid rgba(88, 88, 88, 0.253);
+    padding: 5px;
+    margin: 5px;
+    justify-content: space-between;
+}
+
+.item-editor-container .item-edit {
+    margin: 0;
+    font-size: 16px;
+    align-self: center;
+}
+
+.item-editor-container{
+    width: 90%;
+}
+
+.keep-title .title-display {
+    width: 100%;
+    padding: 5px;
+}
+.keep-title {
+    align-items: center;
+}
+
+.title {
+    text-align: center;
+}
+
+
+
+label {
+    padding: 5px;
+    color: rgba(73, 73, 73, 0.815);
+}
+
+.keep-title > * {
+    margin: 5px;
+}
+
+.add-keep-btn {
+    background-color: rgb(71, 131, 187);
+    padding: 5px;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.note-content {
+    align-items: center;
+}
+.note-content > * {
+    margin: 5px;
+}
+
+.note-display {
+    width: 100%;
+    padding: 5px;
+}
+
+
+.item-editor-container .item-display {
+    margin: 0;
+    align-self: center;
+    padding: 5px;
+    width: 95%;
+}
+
+.item-editor-container .check-btn {
+    width: 15px;
+    align-self: center;
+}
+
+.item-editor-container input:focus {
+    /* outline: none;    */
+}
+
+.remove-btn {
+    cursor: pointer;
+    font-size: 25px;
+    color: rgb(54, 54, 54);
+}
+
+.add-icon {
+    display: inline;
+    color: rgb(122, 113, 113);
+}
+
+.img-container {
+    display: flex;
+
+}
+
+.img-container img {
+    display: flex;
+    width: 100%;
+    margin: 0 auto;
+}
+
+
+/* HELPERS */
+
+.flex {
+    display: flex;
+}
+
+.wrap {
+    flex-wrap: wrap;
+}
+
+.line {
+    text-decoration: line-through;
+}
 

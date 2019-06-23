@@ -4,13 +4,20 @@ import keepPrev from './keep-prev.cmp.js';
 
 
 export default {
-    name: 'keepList',
+    name: 'keepList', 
     template: `
     <section class="keep-list">
-    <h2>keep list</h2>
-    <div v-for="keep in keeps">
-    <keep-prev :keep="keep"></keep-prev>
-    </div>
+        <div class="pined-container">
+            <div v-for="keep in keeps" class="keep-item">
+                <keep-prev v-if="keep.isPined" :keep="keep"></keep-prev>
+            </div>
+        </div>    
+
+        <div class="keeps-container">
+            <div v-for="keep in keeps" class="keep-item">
+                <keep-prev v-if="!keep.isPined" :keep="keep"></keep-prev>
+            </div>
+        </div>
     </section>
     `,
    
