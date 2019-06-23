@@ -1,7 +1,7 @@
 
 import {utilService} from '../../../services/util.service.js';
 import {emailService} from '../../../services/email.service.js';
-
+import eventBus from '../../../services/event-bus.service.js';
 
 export default {
     name: 'EmailMaker',
@@ -26,6 +26,7 @@ export default {
                 this.composedEmail.body = emailToReplyTo.body
             })
         }
+        eventBus.$on('send-to-email', this.receiveKeep)
     },
     data () {
         return {
@@ -51,6 +52,13 @@ export default {
             this.composedEmail.timestamp = +new Date();
             emailService.addEmail(this.composedEmail);
             this.$router.push('/email');
+        },
+        receiveKeep(keep) {
+            if (keep) {
+                console.log('got to recieve keep', keep)
+                this.composedEmail.subject = keep.title;
+                if (keep.type === 'note') this.composedEmail.body = keep.data.content;
+            }
         }
     }
 }

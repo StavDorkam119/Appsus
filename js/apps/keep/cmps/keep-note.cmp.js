@@ -8,8 +8,10 @@ export default {
         <div class="note-content flex">
         <label class="note-lable">Note:</label>
         <div v-if="note.isEditing">
-            <input class="title-edit" type="text" placeholder="Enter note..." v-model="note.content"
-                @keyup.enter="stopEditing(note)" @blur="stopEditing(note)" @keyup.esc="cancleEditing(note)" v-focus />
+            <textarea class="" type="text" v-model="note.content"
+                @keyup.enter="stopEditing(note)" @blur="stopEditing(note)" @keyup.esc="cancleEditing(note)" v-focus>
+                Enter note...
+                </textarea>
         </div>
         <div v-else class="note-display" @click="editNote(note)">
             {{note.content}}

@@ -1,5 +1,6 @@
 
 import {utilService} from '../../../services/util.service.js';
+import eventBus from '../../../services/event-bus.service.js';
 
 export default {
     name: 'keepPrev',
@@ -8,7 +9,9 @@ export default {
     <router-link :to="keepUrl">
     Click To Edit 
     <i class="fas fa-pencil-alt"></i>
+    
     </router-link>
+    <button @click.stop="sendToEmail">Send To Email</button>
         <div class="keep-display">
         <div  v-if="keep.isPined" class="pin-icon">PIN Icon</div>
         <div class="img-container" v-if="keep.img">
@@ -37,14 +40,17 @@ export default {
         }
     },
     created() {
-    
+            
     }, 
   
     methods: {
         goToEdit() {
             this.$router.push(`editor/${this.keep.id}`)
-        }
-       
+        },
+       sendToEmail() {
+        eventBus.$emit('send-to-email', {title:this.keep.title, type:this.keep.type, data:this.keep.data})
+        this.$router.push('/email/compose');
+       }
     },
     computed: {
         keepUrl() {
