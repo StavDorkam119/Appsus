@@ -10,12 +10,17 @@
 @import './email/email-list.css';
 @import './email/email-preview.css';
 @import './email/email-details.css';
+@import './email/email-maker.css';
 
 @font-face {
     font-family: 'Karla';
     src: url('/css/fonts/Karla/Karla-Regular.ttf');
 }
 
+@font-face {
+    font-family: 'Euro';
+    src: url('./fonts/Eurofurence/eurof35.ttf');
+}
 
 
 

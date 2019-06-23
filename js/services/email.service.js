@@ -40,7 +40,10 @@ function updateEmail(updatedEmail) {
 }
 
 function deleteEmail(id) {
-
+  const emails = storageService.load(EMAIL_KEY);
+  const emailToDeleteIdx = emails.findIndex(email => email.id === id);
+  emails.splice(emailToDeleteIdx, 1);
+  storageService.store(EMAIL_KEY, emails);  
 }
 
 

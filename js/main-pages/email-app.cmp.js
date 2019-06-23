@@ -2,7 +2,7 @@ import {
     emailService
 } from '../services/email.service.js';
 import emailList from '../apps/email/pages/email-list.cmp.js';
-import emailSideBar from '../apps/email/cmps/sidebar.cmp.js'; 
+import emailSideBar from '../apps/email/cmps/email-sidebar.cmp.js'; 
 import eventBus from '../services/event-bus.service.js';
 
 export default {

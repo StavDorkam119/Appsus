@@ -27,3 +27,48 @@
     border-radius: 0px 25px 25px 0px;
     text-align: justify;
 }
+
+.progress-bar {
+    background: rgba(57, 57, 57, 0.99);
+    margin-top: 1em;
+    align-self: center;
+    min-width: 9.375em;
+    text-align: center;
+    border-radius: 25px;
+    padding: 0.5em 0;
+    position: relative;
+    font-style: italic;
+}
+
+.progress-bar > div {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    background-color: var(--third-color);
+    border-radius: 25px;
+}
+
+.progress-bar h1 {
+    margin: 0;
+    position: relative;
+    z-index: 5;
+}
+
+.email-app-sidebar-container button {
+    border: 0;
+    font-size: 1em;
+    background: var(--fifth-color);
+    margin-right: 5px;
+    box-shadow: 0px 0px 5px black;
+    transition: all 0.2s;
+    outline: none;
+}
+
+.email-app-sidebar-container button:hover {
+
+    background: var(--fourth-color);
+    margin-right: 5px;
+    color: white;
+}
+

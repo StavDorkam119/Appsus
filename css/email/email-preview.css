@@ -1,18 +1,19 @@
 
 .email-preview {
     text-decoration: none;
-    color: var(--fifth-color);
+    color: black;
     display: flex;
     align-items: center;
     height: 100px;
     justify-content: space-between;
     padding: 1rem 1rem;
-    background-color: rgb(73, 86, 110);
+    background-color: white;
     border-bottom: 1px solid black;
+    font-weight: bold;
 }
 
 .email-preview.read {
-    background-color: lightgreen;
+    font-weight: 200;
 }
 
 @media (max-width: 991px) {
