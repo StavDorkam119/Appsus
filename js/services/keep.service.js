@@ -34,7 +34,7 @@ function getEmptyKeep() {
     return {
         id: utilService.makeId(),
         isEditing:false,
-        type: 'checkList',
+        type: 'note',
         title: '',
         data: null,
         bgColor: '#ffff94',

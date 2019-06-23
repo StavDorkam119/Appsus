@@ -1,0 +1,39 @@
+.image-upload > input {
+    display: none;
+}
+
+.image-upload i {
+    cursor: pointer;
+    color: rgb(82, 82, 82);
+}
+
+.color-picker > input {
+    display: none;
+}
+
+.color-picker i  {
+    cursor: pointer;
+    color: rgb(82, 82, 82);
+}
+
+.checklist-icon {
+    color: rgb(82, 82, 82);
+}
+
+.pin-icon {
+    color: rgb(82, 82, 82);
+}
+
+.pin-icon.active {
+    color: black;
+    font-weight: bold;
+} 
+
+.checklist-icon.active {
+    color: black;
+    font-weight: bold;
+}
+
+.btn-back {
+    color: black;
+} 

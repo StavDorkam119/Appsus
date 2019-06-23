@@ -10,11 +10,10 @@ export default {
     template: `
     <section class="keep-creator" :style="{backgroundColor: keep.bgColor}" >
     <router-link to="/keep/main">
-        <button class="btn-back" @click="addKeep">
-        <img src="https://img.icons8.com/ios/50/000000/circled-left-2-filled.png">
-        </button>  
+        <div class="btn-back" @click="addKeep">
+        <i class="fas fa-arrow-left"></i>
+        </div>  
     </router-link>
-        <h2>keep creator</h2>
             <div v-if="keep.img" class="img-container">
                 <img :src="keep.img" /> 
             </div>
@@ -27,7 +26,7 @@ export default {
             </div>
             <div v-else class="title-display" @click="editKeep(keep)">
                 <h3 v-if="keep.title">{{keep.title}} </h3>
-            Title...   
+                 <h3 v-else >Keep Title:</h3>     
         </div>
         </div>
 
@@ -35,21 +34,36 @@ export default {
 
 
             <div class="keep-menu">
+            <div class="checklist-icon" :class="{active : keep.type === 'checkList'}" @click="changeToCheckList">
+            <i class="fas fa-tasks"></i>
+            </div>
+          
             
-            <select v-model="keep.type" class="keep-type" title="type">
-            <option disabled value="">Select Type</option>
-            <option value="note">Note</option>
-            <option value="checkList">Checklist</option>
-            </select>
-            
-                <input type="color" v-model="keep.bgColor" class="color-picker" title="background color"/>
-                <input type="file" @change="uploadNewImg" title="upload image" />
-                <button class="btn-pin" title="pin" @click="pinKeep">
-                <img src="https://img.icons8.com/color/48/000000/pin3.png">
-                </button>
-                <button class="btn-delete" title="delete" @click="deleteKeep">
-                <img src="https://img.icons8.com/android/24/000000/trash.png">
-                </button>
+                
+
+               
+                <div class="image-upload">
+                <label for="file-input">
+                <i class="fas fa-image"></i>
+                </label>
+                    <input id="file-input" type="file" @change="uploadNewImg" title="upload image"/>
+                </div>
+
+                <div class="color-picker">
+                <label for="color-input">
+                <i class="fas fa-palette" title="background color"></i>
+                </label>
+                    <input id="color-input" type="color" v-model="keep.bgColor" />
+                </div>
+               
+
+
+                <div class="pin-icon" title="pin" @click="pinKeep" :class="{active : keep.isPined}">
+                <i class="fas fa-thumbtack"></i>
+                </div>
+                <div class="btn-delete" title="delete" @click="deleteKeep">
+                <i class="far fa-trash-alt"></i>
+                </div>
             </div>
         <router-link to="/keep/main">
         <button class="add-keep-btn" @click="addKeep">Add Keep</button>
@@ -78,6 +92,14 @@ export default {
     },
 
     methods: {
+        changeToCheckList() {
+            if(this.keep.type === 'checkList') {
+                this.keep.type = 'note'
+            }
+            else {
+                this.keep.type = 'checkList'
+            }
+        },
         editKeep(keep) {
             this.titleBeforeEdit = keep.title;
             keep.isEditing = true;
@@ -103,7 +125,7 @@ export default {
             reader.readAsDataURL(ev.target.files[0])
         },
         pinKeep() {
-            this.keep.isPined = true;
+            this.keep.isPined = !this.keep.isPined;
         },
         addImageToKeep(img) {
             this.keep.img = img.src;

@@ -1,4 +1,4 @@
-.keeps-container, .pined-container {
+.keeps-container {
     display: grid;
     grid-auto-flow: row dense;
     grid-template-columns: repeat( auto-fill, minmax(250px, 1fr));
@@ -91,7 +91,7 @@
     width: 30px;
 }
 
-.keep-menu .color-picker {
+.keep-menu {
     height: 30px;
     padding: 0;
 }
@@ -136,7 +136,7 @@
 
 
 label {
-    padding: 5px;
+    /* padding: 5px; */
     color: rgba(73, 73, 73, 0.815);
 }
 

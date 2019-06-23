@@ -4,8 +4,11 @@ import {utilService} from '../../../services/util.service.js';
 export default {
     name: 'keepPrev',
     template: `
-    <section class="keep-prev" :style="{backgroundColor: keep.bgColor}">
-    <router-link :to="keepUrl">EDIT</router-link>
+    <section class="keep-prev" :style="{backgroundColor: keep.bgColor}" @click="goToEdit">
+    <router-link :to="keepUrl">
+    Click To Edit 
+    <i class="fas fa-pencil-alt"></i>
+    </router-link>
         <div class="keep-display">
         <div  v-if="keep.isPined" class="pin-icon">PIN Icon</div>
         <div class="img-container" v-if="keep.img">
@@ -38,6 +41,9 @@ export default {
     }, 
   
     methods: {
+        goToEdit() {
+            this.$router.push(`editor/${this.keep.id}`)
+        }
        
     },
     computed: {

@@ -1,9 +1,17 @@
 
 /* Font Families */
-
+@import url("nucleo-style.css");
 @import './header.css';
 @import './home.css';
-@import './keep-app.css';
+
+/* KEEP */
+@import './keep/keep-main.css';
+@import './keep/keep-editor.css';
+@import './keep/keep-list.css';
+@import './keep/keep-creator.css';
+@import './keep/keep-prev.css';
+
+/* EMAIL */
 @import './email/email-app.css';
 @import './email/email-sidebar.css';
 @import './email/email-filter.css';
@@ -11,6 +19,7 @@
 @import './email/email-preview.css';
 @import './email/email-details.css';
 @import './email/email-maker.css';
+
 
 @font-face {
     font-family: 'Karla';
