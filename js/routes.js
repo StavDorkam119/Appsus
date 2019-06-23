@@ -20,6 +20,6 @@ export default [
         {path: 'creator', component: keepCreator}
     ]},
     {path: '/email', component: emailApp},
-    {path: '/email/compose/', component: emailComposeCmp},
+    {path: '/email/compose/:emailId?', component: emailComposeCmp},
     {path: '/email/:emailId', component: emailDetailsCmp},
 ]

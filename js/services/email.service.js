@@ -13,7 +13,8 @@ export const emailService = {
     getEmailById,
     filterEmails,
     updateEmail,
-    deleteEmail
+    deleteEmail,
+    addEmail
 }
 
 function getEmailById(id) {
@@ -30,6 +31,12 @@ function query() {
         storageService.store(EMAIL_KEY, emails);
     }
     return Promise.resolve(emails);
+}
+
+function addEmail(email) {
+  const emails = storageService.load(EMAIL_KEY);
+  emails.unshift(email);
+  storageService.store(EMAIL_KEY, emails);
 }
 
 function updateEmail(updatedEmail) {
@@ -51,6 +58,9 @@ function filterEmails(emails, filter) {
   const regex = new RegExp(`(${filter.searchTerm})`, 'ig');
   let filteredEmails = JSON.parse(JSON.stringify(emails));
 
+  if (filter.showSent) {
+    filteredEmails = filteredEmails.filter(email => email.wasSentByUser)
+  }
   if (filter.searchTerm) {
     filteredEmails = filteredEmails.filter(email => {
       return (regex.test(email.body) || regex.test(email.subject) || regex.test(email.name))
@@ -87,7 +97,7 @@ function filterEmails(emails, filter) {
 }
 
 function _generateEmails() {
-  return [
+  let emails = [
     {
       "id": "5d0e2bd57ff4d574b2ff867b",
       "body": "Adipisicing deserunt in laborum enim. Aute in minim enim ut fugiat reprehenderit esse id adipisicing Lorem adipisicing officia aliqua labore. Veniam adipisicing et ipsum laborum. Quis commodo sunt dolor pariatur officia occaecat proident exercitation in Lorem duis aute anim. Sint qui enim labore sint consectetur. Nulla esse velit ullamco culpa laborum exercitation aliquip nulla mollit commodo incididunt.\r\nExcepteur duis sint nisi qui consectetur deserunt sit duis. Aliqua commodo laboris culpa et duis labore duis tempor sit duis incididunt proident. Eiusmod veniam cillum consequat sint.\r\n",

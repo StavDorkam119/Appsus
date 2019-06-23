@@ -45,11 +45,12 @@ export default {
     data() {
         return {
             filter: null,
-            mobileMode: true,
+            mobileMode: false,
             showMobileMenu: false
         }
     },
     created () {
+        this.checkMobileMode();
         window.addEventListener('resize', this.checkMobileMode);
         this.checkForFilter(this.$route)
     },

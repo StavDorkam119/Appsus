@@ -23,6 +23,10 @@
         justify-content: center;
         height: 150px;
     }
+    .email-preview > span:nth-child(2) {
+        text-transform: capitalize;
+    }
+
     .email-preview span:last-child {
         align-self: flex-end;
         justify-self: flex-start;

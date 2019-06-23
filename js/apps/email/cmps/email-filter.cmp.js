@@ -21,9 +21,12 @@ export default {
         </section>`,
     created() {
         eventBus.$on('update-filter', update => {
-            if (update === 'none') this.filter.isStarredOn = false;
+            if (update === 'none') {
+                this.filter.showSent = false;
+                this.filter.isStarredOn = false;
+            }
             else if (update === 'starred') this.filter.isStarredOn = true;
-            // else if (update === )
+            else if (update === 'sent') this.filter.showSent = true;
         })
     },
     data() {

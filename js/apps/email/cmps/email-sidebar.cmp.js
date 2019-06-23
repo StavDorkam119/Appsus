@@ -22,6 +22,7 @@ export default {
         }
     },
     created () {
+        this.checkMobileMode();
         window.addEventListener('resize', this.checkMobileMode)
     },
     methods: {

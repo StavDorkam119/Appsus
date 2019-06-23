@@ -5,32 +5,30 @@ export default {
     name: 'EmailPreview',
     template: `
     <router-link :to="emailUrl" class="email-preview" :class="isRead">
-            <span>{{email.name}}</span>
+            <span>
+                <span v-if="!email.isRead"><i class="fas fa-envelope"></i></span> 
+                <span v-else><i class="far fa-envelope-open"></i></span> 
+                {{email.name}}
+            </span>
+            <br>
             <span>{{email.subject}}</span> 
+            <br>
             <span>{{bodySize}}</span>
             <span>{{this.dateFormatted}}</span>
     </router-link>
     `,
     props: ['email'],
-    created() {
-        // debugger;
-        this.dateTimeStamp = new Date(this.email.timestamp)
-    },
-    data () {
-        return {
-            dateTimeStamp: ''
-        }
-    },
     methods: {
   
     },
     computed: {
         bodySize() {
             if (this.email.body.length > 30) return this.email.body.substring(0, 30) + '...';
+            else return this.email.body;
         },
         dateFormatted() {
             // debugger;
-            return this.dateTimeStamp.toDateString();
+            return new Date(this.email.timestamp).toDateString();
         },
         emailUrl() {
             return '/email/' + this.email.id;
