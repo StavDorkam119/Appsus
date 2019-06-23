@@ -1,0 +1,13 @@
+
+.email-app-container {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    position: relative;
+    min-height: 100vh;
+}
+
+@media (max-width: 560px) {
+    .email-app-container {
+        grid-template-columns: 1fr;
+    }
+}

@@ -4,6 +4,8 @@ import {
     filters
 } from '../../data/filters.js';
 
+import {utilService} from '../services/util.service.js';
+
 export default {
     name: 'appHeader',
     template: `
@@ -12,7 +14,7 @@ export default {
                 <img src="imgs/logo.svg"/>
                 <h1>Appsus</h1>
             </div>
-            <component v-if="this.filter" :is="this.filter.component"></component>
+            <component v-if="this.filter && !this.mobileMode" :is="this.filter.component"></component>
             <div class="toggle-menu" @click="toggleMenu"><i class="fas fa-bars"></i></div>
             <nav class="header-links-container" :class="menuClass">
                 <ul>
@@ -49,12 +51,11 @@ export default {
     },
     created () {
         window.addEventListener('resize', this.checkMobileMode);
-        // debugger;
         this.checkForFilter(this.$route)
     },
     methods: {
         checkMobileMode() {
-            if (window.innerWidth <= 991) this.mobileMode = true; 
+            if (utilService.checkIfMobile()) this.mobileMode = true; 
             else this.mobileMode = false;
         },
         toggleMenu() {
@@ -69,7 +70,7 @@ export default {
     },
     computed: {
         menuClass() {
-            if (this.mobileMode && this.showMobileMenu) return 'shown'; 
+            if (this.showMobileMenu) return 'shown'; 
         }
     },
     watch: {

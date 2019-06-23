@@ -6,21 +6,35 @@ export default {
         <section class="email-filter-container">
             <form @submit.prevent> 
             <input id="email-filter-search" type="search" v-model.lazy="filter.searchTerm" placeholder="Search"/>
-            <select v-model="filter.sortOptions">
-                <option>All</option>
-                <option>Date</option>
-                <option>Title</option>
+            <select v-model="filter.filterOptions">
+                <option value="none">All</option>
+                <option value="true">Read</option>
+                <option value="false">Unread</option>
             </select>
-            <label for="email-filter-is-read">Read/Unread</label>
-            <input id="email-filter-is-read" type="checkbox" v-model="filter.isRead" />
+            <select v-model="filter.sortOptions">
+                <option value="none">None</option>
+                <option value="name">Name</option>
+                <option value="title">Title</option>
+                <option value="date">Date</option>
+            </select>
             </form>
         </section>`,
+    created() {
+        eventBus.$on('update-filter', update => {
+            if (update === 'none') this.filter.isStarredOn = false;
+            else if (update === 'starred') this.filter.isStarredOn = true;
+            // else if (update === )
+        })
+    },
     data() {
         return {
             filter: {
                 searchTerm: '',
-                sortOptions: 'All',
-                isRead: false,
+                filterOptions: 'none',
+                sortOptions: 'none',
+                isStarredOn: false,
+                showSent: false,
+                showDrafts: false
             }
         }
     },
@@ -30,6 +44,8 @@ export default {
     watch: {
         'filter': {
             handler(filter) {
+                // debugger;
+                
                 eventBus.$emit('filter-emails', filter);
             },
             deep: true

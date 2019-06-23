@@ -4,18 +4,17 @@ import {utilService} from '../../../services/util.service.js';
 export default {
     name: 'EmailPreview',
     template: `
-    <router-link :to="emailUrl">
-        <li class="email-preview-container">
-            <span>{{email.name}}</span>|
-            <span>{{email.subject}}</span> - 
-            <span>{{bodySize}}</span>|
-           <span>{{this.dateFormatted}}</span>
-        </li>
+    <router-link :to="emailUrl" class="email-preview" :class="isRead">
+            <span>{{email.name}}</span>
+            <span>{{email.subject}}</span> 
+            <span>{{bodySize}}</span>
+            <span>{{this.dateFormatted}}</span>
     </router-link>
     `,
     props: ['email'],
     created() {
-        this.dateTimeStamp = new Date(this.email.sentAtTimestamp)
+        // debugger;
+        this.dateTimeStamp = new Date(this.email.timestamp)
     },
     data () {
         return {
@@ -30,10 +29,14 @@ export default {
             if (this.email.body.length > 30) return this.email.body.substring(0, 30) + '...';
         },
         dateFormatted() {
-            return this.dateTimeStamp.toDateString().split(' ').slice(1,3).join(' ')
+            // debugger;
+            return this.dateTimeStamp.toDateString();
         },
         emailUrl() {
             return '/email/' + this.email.id;
+        },
+        isRead() {
+            if (this.email.isRead) return 'read';
         }
     },
     components: {

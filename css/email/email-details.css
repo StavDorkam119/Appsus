@@ -1,0 +1,29 @@
+
+.email-details-container {
+    /* padding-top: 1.5em; */
+}
+
+.crud-buttons {
+    display: flex;
+    align-items: center;
+    background: rgb(200, 127, 68);
+}
+
+.crud-buttons > * {
+    margin-left: 1em;
+}
+
+.email-details-container a{
+    text-decoration: none;
+    color: navajowhite;
+    display: flex;
+    width: 130px;
+    flex-wrap: nowrap;
+    align-items: center;
+}
+
+.email-details-container a i{
+    margin-right: 5px;
+    font-size: 10px;
+    line-height: 22px;
+}

@@ -4,13 +4,23 @@
 @import './header.css';
 @import './home.css';
 @import './keep-app.css';
+@import './email/email-app.css';
+@import './email/email-sidebar.css';
 @import './email/email-filter.css';
+@import './email/email-list.css';
+@import './email/email-preview.css';
+@import './email/email-details.css';
+@import './email/email-maker.css';
 
 @font-face {
     font-family: 'Karla';
     src: url('/css/fonts/Karla/Karla-Regular.ttf');
 }
 
+@font-face {
+    font-family: 'Euro';
+    src: url('./fonts/Eurofurence/eurof35.ttf');
+}
 
 
 
@@ -18,7 +28,7 @@
 
 :root {
     --primary-color: rgb(150, 114, 85);
-    --second-color: rgb(27, 95, 72);
+    --second-color: rgba(10, 190, 129, 0.9);
     --third-color: rgb(120, 159, 233);
     --fourth-color: rgb(255, 180, 106);
     --fifth-color: #F8FAF8;
