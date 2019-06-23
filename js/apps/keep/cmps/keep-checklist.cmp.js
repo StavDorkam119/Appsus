@@ -4,10 +4,11 @@ import eventBus from '../../../services/event-bus.service.js';
 export default {
     name: 'checkList',
     template: `
-    <section class="checklist-container">
+    <section class="checklist-container" >
     <div class="add-icon">+</div>
+
     <input type="text" placeholder="Add Item..." 
-        v-model="txt" @keyup.enter="addItem" v-focus @blur="addItem"/>
+        v-model="txt" @keyup.enter="addItem"  @blur="addItem"/>
     <div class="item-container flex" v-for="(item, idx) in checkList" :key="item.id">
             <div class="item-editor-container flex">
                 <input type="checkbox" class="check-btn" v-model="item.isDone"/>
@@ -25,7 +26,7 @@ export default {
     </section> 
     `,
 
-    props: [],
+    props: ['checkListForEdit'],
 
     data() {
         return {
@@ -36,6 +37,9 @@ export default {
         }
     },
     created() {
+        if(this.checkListForEdit) {
+            this.checkList = this.checkListForEdit;
+        }
         this.currItem = keepService.getEmptyCheckItem()
         eventBus.$on('add-data', this.addCheckList);
         eventBus.$on('delete-data', this.initialize)

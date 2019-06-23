@@ -6,7 +6,7 @@ import {
 } from './util.service.js';
 
 const KEEP_KEY = 'keeps';
-// let keeps;
+let keeps;
 
 
 export const keepService = {
@@ -15,13 +15,13 @@ export const keepService = {
     addKeep,
     getEmptyNote,
     getEmptyCheckItem,
-    toggleCheckItem,
     getById,
-    addDataToKeep
+    addDataToKeep,
+    saveKeep
 }
 
 function query() {
-    let keeps = storageService.load(KEEP_KEY);
+    keeps = storageService.load(KEEP_KEY);
     if (!keeps || !keeps.length) {
         keeps = _generateKeeps()
         storageService.store(KEEP_KEY, keeps);
@@ -33,7 +33,7 @@ function query() {
 function getEmptyKeep() {
     return {
         id: utilService.makeId(),
-        isEditing:true,
+        isEditing:false,
         type: 'checkList',
         title: '',
         data: null,
@@ -52,13 +52,6 @@ function getEmptyNote() {
     }
 }
 
-
-function getById(keepId) {
-    const keep = keeps.find(keep => keep.id === keepId);
-    return Promise.resolve(keep)
-}
-
-
 function getEmptyCheckItem() {
     return {
         id: utilService.makeId(),
@@ -69,22 +62,27 @@ function getEmptyCheckItem() {
     }
 }
 
+function getById(keepId) {
+    keeps = storageService.load(KEEP_KEY);
+    const keep = keeps.find(keep => keep.id === keepId);
+    return Promise.resolve(keep)
+}
+
 
 function addKeep(keep) {
-    let keeps = storageService.load(KEEP_KEY);
+    keeps = storageService.load(KEEP_KEY);
     keeps.unshift(keep)
     storageService.store(KEEP_KEY, keeps);
 }
 
 function addDataToKeep(data) {
-    let keeps = storageService.load(KEEP_KEY);
+    keeps = storageService.load(KEEP_KEY);
     keep.data = data;
     storageService.store(KEEP_KEY, keeps);
 }
 
-
-function toggleCheckItem(item) {
-    item.isDone = !item.isDone;
+function saveKeep () {
+    storageService.store(KEEP_KEY, keeps);
 }
 
 
@@ -92,7 +90,7 @@ function _generateKeeps() {
     return [
         {
             "id": "5d0b7e6d1c0394bf6396932f",
-            "isEditing": true,
+            "isEditing": false,
             "type": "note",
             "data": {
                 "content": "adding style to the presentation is very important.",

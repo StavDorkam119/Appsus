@@ -7,15 +7,14 @@ export default {
     name: 'keepList', 
     template: `
     <section class="keep-list">
-        <div class="pined-container">
-            <div v-for="keep in keeps" class="keep-item">
-                <keep-prev v-if="keep.isPined" :keep="keep"></keep-prev>
+        <div class="pined-container" v-for="keep in keeps" v-if="keep.isPined">
+            <div class="keep-item">
+                <keep-prev :keep="keep"></keep-prev>
             </div>
         </div>    
-
         <div class="keeps-container">
-            <div v-for="keep in keeps" class="keep-item">
-                <keep-prev v-if="!keep.isPined" :keep="keep"></keep-prev>
+            <div v-for="keep in keeps" class="keep-item" v-if="!keep.isPined">
+                <keep-prev :keep="keep"></keep-prev>
             </div>
         </div>
     </section>

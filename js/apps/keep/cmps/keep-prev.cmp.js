@@ -5,12 +5,14 @@ export default {
     name: 'keepPrev',
     template: `
     <section class="keep-prev" :style="{backgroundColor: keep.bgColor}">
-    <router-link :to="keepUrl">
+    <router-link :to="keepUrl">EDIT</router-link>
         <div class="keep-display">
+        <div  v-if="keep.isPined" class="pin-icon">PIN Icon</div>
         <div class="img-container" v-if="keep.img">
             <img :src="keep.img" /> 
         </div>
         <h3 class="title">{{keep.title}}</h3>
+        <h4 v-if="keep.tag" class="keep-tag">#{{keep.tag}} </h4>
         <div v-if="keep.type==='note'" class="note" >
         {{keep.data.content}}
         </div>
@@ -21,7 +23,6 @@ export default {
             </div>    
         </div>
         </div>
-    </router-link>
     </section>
     `,
    
@@ -41,7 +42,7 @@ export default {
     },
     computed: {
         keepUrl() {
-            return ''
+            return 'editor/' + this.keep.id
         }
     },
     components: {

@@ -1,13 +1,16 @@
 .keeps-container, .pined-container {
     display: grid;
     grid-auto-flow: row dense;
-    grid-template-columns: repeat( auto-fit, minmax(250px, 1fr));
+    grid-template-columns: repeat( auto-fill, minmax(250px, 1fr));
     grid-gap: 5px;
 }
 
+.pined-container {
+    margin: 50px 0 100px;
+}
+
 .keep-item {
-    display: flex;
-    align-self: auto;
+   display: inline-flex;
 }
 
 .keep-prev {
@@ -26,11 +29,21 @@
 
 
 .keep-creator {
-    /* background-color:lightyellow; */
     color: black;
     margin: 0 auto;
     max-width: 500px;
     padding: 20px;
+}
+
+.keep-editor {
+    color: black;
+    margin: 0 auto;
+    max-width: 500px;
+    padding: 20px;
+}
+
+.keep-editor  * {
+    margin: 5px;
 }
 
 .keep-creator > * {
@@ -45,8 +58,16 @@
     width: 300px;
 }
 
+.keep-editor input {
+    background-color: rgba(0, 0, 0, 0);
+    border: none;
+    padding: 5px;
+    font-size: 16px;
+    width: 300px;
+}
+
 .keep-menu {
-    background-color: #fff;
+    background-color: rgba(0, 0, 0, 0);
     display: flex;
     align-items: center;
     border: 1px solid rgb(92, 92, 92);

@@ -9,7 +9,7 @@ import keepApp from './main-pages/keep-app.cmp.js';
 import keepMain from './apps/keep/pages/keep-main.cmp.js';
 import keepEditor from './apps/keep/pages/keep-editor.cmp.js';
 import keepCreator from './apps/keep/pages/keep-creator.cmp.js';
-
+ 
 export default [
     {path: '/', component: homeCmp},
     {path: '/about', component: aboutCmp},

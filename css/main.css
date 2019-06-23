@@ -41,7 +41,7 @@
 body {
     margin: 0;
     background-color: var(--primary-color);
-    color: var(--fifth-color);
+    /* color: var(--fifth-color); */
     font-family: 'Lato', sans-serif;
 }
 

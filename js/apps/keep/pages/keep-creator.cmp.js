@@ -3,12 +3,12 @@ import eventBus from '../../../services/event-bus.service.js';
 import checkList from '../cmps/keep-checklist.cmp.js'
 import note from '../cmps/keep-note.cmp.js'
 
-
+ 
 
 export default {
     name: 'keepCreator',
     template: `
-    <section class="keep-creator" :style="{backgroundColor: keep.bgColor}">
+    <section class="keep-creator" :style="{backgroundColor: keep.bgColor}" >
     <router-link to="/keep/main">
         <button class="btn-back" @click="addKeep">
         <img src="https://img.icons8.com/ios/50/000000/circled-left-2-filled.png">
@@ -20,14 +20,15 @@ export default {
             </div>
             
         <div class="keep-title flex">
-            <label class="title-lable">Title:</label> 
+            
             <div v-if="keep.isEditing">
-                <input class="title-edit" type="text" placeholder="Enter title..." v-model="keep.title"
+                <input class="title-edit" type="text" placeholder="Title... " v-model="keep.title"
                     @keyup.enter="stopEditing(keep)" @blur="stopEditing(keep)" @keyup.esc="cancleEditing(keep)" v-focus />
             </div>
             <div v-else class="title-display" @click="editKeep(keep)">
-                {{keep.title}}    
-            </div>
+                <h3 v-if="keep.title">{{keep.title}} </h3>
+            Title...   
+        </div>
         </div>
 
             <component :is="keep.type" v-on:send-data="addDataToKeep"></component>
@@ -123,7 +124,7 @@ export default {
         emitAddKeep() {
             eventBus.$emit('add-data', this.keep);
         },
-        addDataToKeep(data) {
+        addDataToKeep(data) { 
             this.keep.data = data;
         },
         initialize() {

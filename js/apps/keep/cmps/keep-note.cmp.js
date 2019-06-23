@@ -19,7 +19,7 @@ export default {
         </section>
     `,
 
-    props: [],
+    props: ['noteForEdit'],
 
     data() {
         return {
@@ -28,7 +28,10 @@ export default {
         }
     },
     created() {
-        this.note = keepService.getEmptyNote()
+        if(this.noteForEdit) {
+            this.note = this.noteForEdit
+        }
+        else this.note = keepService.getEmptyNote()
         eventBus.$on('add-data', this.addNote);
         eventBus.$on('delete-data', this.initialize)
         // console.log(this.note)
