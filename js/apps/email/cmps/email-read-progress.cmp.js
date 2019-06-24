@@ -1,6 +1,6 @@
 
 import {emailService} from '../../../services/email.service.js';
-import eventBus from '../../../services/event-bus.service.js';
+import eventBus from '../../../event-bus.js';
 
 export default {
     name: 'Email-Read-Progress',

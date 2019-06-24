@@ -1,5 +1,5 @@
 import { keepService } from '../../../services/keep.service.js';
-import eventBus from '../../../services/event-bus.service.js';
+import eventBus from '../../../event-bus.js';
 import checkList from '../cmps/keep-checklist.cmp.js'
 import note from '../cmps/keep-note.cmp.js'
 
