@@ -10,16 +10,15 @@
     background-color: var(--fifth-color);
     color: var(--primary-color);
     width: 100%;
-    /* padding: 0 1em; */
-    height: 70px;
     font-family: 'Karla', sans-serif;
     z-index: 99;
+    border-bottom: 1px solid #cccccc;
 }
 
 .app-header .logo {
     display: flex;
     align-items: center;
-    
+    cursor: pointer;
 }
 
 .app-header .logo img {
@@ -45,9 +44,7 @@
     /* display: none; */
 }
 
-.header-links-container {
-    width: 300px;
-}
+
 
 .header-links-container ul{
     list-style: none;
@@ -56,13 +53,12 @@
     margin: 0;
     padding: 0;
     height: 100%;
-    
 }
 
 .header-links-container ul li {
-    display: inline-block;
+    display: block;
     background: var(--fifth-color);
-    border-left: 1px solid black;
+    border-left: 1px solid #cccccc;
     line-height: 70px;
     flex-grow: 1;
 }
@@ -71,12 +67,13 @@
 
 .header-links-container ul li a{
     text-decoration: none;
-    display: inline-block;
-    width: 100%;
+    display: block;
+    width: 77px;
     height: 100%;
     text-align: center;
     color: var(--primary-color);
     transition: background 0.5s, color 0.5s;
+    user-select: none;
 }
 
 .app-header a.router-link-active {
@@ -96,33 +93,43 @@
     }
     
     .header-links-container {
+        visibility: hidden;
+        animation: fadeInDown 0.5s;
         position: absolute;
         top: 100%;
         right: 0;
-        width: 261px;
-        background: wheat;
+        /* width: 261px; */
+        background: #e9e6e0;
     }
 
     .header-links-container ul {
         display: grid;
         grid-gap: 10px;
-        grid-template-columns: repeat(auto-fit, minmax(70px, 1fr))
+        padding: 10px;
+        grid-template-columns: repeat(2, 70px) ;
+        grid-auto-rows: 70px;
     }
 
     .header-links-container ul li {
         border: 0;
-        border-top: 1px solid black;
-    }
-
-    .header-links-container ul li{
         display: block;
+        line-height: unset;
     }
 
+    .header-links-container ul li a {
+        width: unset;
+    }
+
+    .header-links-container ul li i{
+        font-size: 2em;
+        line-height: 70px;
+    }
     /* Helpers */
-    .shown {
-        transform: translateX(0);
-        transform-origin: right;
-        transition: transform 0.5s;
+    .show-nav-links-header {
+        visibility: visible;
+        animation: fadeInUp 0.5s;
     }
-
+    .show-mobile-icon {
+        display: inline-block;
+    }
 }

@@ -1,17 +1,20 @@
-
-import {utilService} from '../../../services/util.service.js';
-import {emailService} from '../../../services/email.service.js';
-
+import {
+    utilService
+} from '../../../services/util.service.js';
+import {
+    emailService
+} from '../../../services/email.service.js';
+import eventBus from '../../../event-bus.js';
 
 export default {
     name: 'EmailPreview',
     template: `
-    <router-link :to="emailUrl" class="email-preview" :class="isRead">
+    <section @click="goToDetails" class="email-preview" :class="isRead">
             
-            <span>
-            <input type="checkbox" :checked="isRead" @click.stop="toggleRead"/>
+            <span @click.stop="toggleRead">
+                <span class="email-preview-name-first" :style="{background: nameColor}">{{firstNameIni}}</span>
                 <span v-if="!email.isRead"><i class="fas fa-envelope"></i></span> 
-                <span v-else><i class="far fa-envelope-open"></i></span> 
+                <span v-else  ><i class="far fa-envelope-open"></i></span> 
                 {{email.name}}
             </span>
             <br>
@@ -19,14 +22,29 @@ export default {
             <br>
             <span>{{bodySize}}</span>
             <span>{{this.dateFormatted}}</span>
-    </router-link>
+    </section>
     `,
     props: ['email'],
+    data() {
+        return {
+            nameColor: this.setRandomColor()
+        }
+    },
     methods: {
         toggleRead() {
             const updatedEmail = this.email;
             updatedEmail.isRead = !updatedEmail.isRead
             emailService.updateEmail(updatedEmail);
+            eventBus.$emit('update-progress');
+        },
+        emailUrl() {
+            return '/email/' + this.email.id;
+        },
+        goToDetails() {
+            this.$router.push(`${this.emailUrl()}`)
+        },
+        setRandomColor() {
+            return utilService.getRandomColor()
         }
     },
     computed: {
@@ -38,13 +56,13 @@ export default {
             // debugger;
             return new Date(this.email.timestamp).toDateString();
         },
-        emailUrl() {
-            return '/email/' + this.email.id;
-        },
         isRead() {
             if (this.email.isRead) return 'read';
+        },
+        firstNameIni() {
+            return this.email.name[0];
         }
+        
     },
-    components: {
-    }
+    components: {}
 }

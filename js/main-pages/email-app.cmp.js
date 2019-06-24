@@ -3,14 +3,14 @@ import {
 } from '../services/email.service.js';
 import emailList from '../apps/email/pages/email-list.cmp.js';
 import emailSideBar from '../apps/email/cmps/email-sidebar.cmp.js'; 
-import eventBus from '../services/event-bus.service.js';
+import eventBus from '../event-bus.js';
 
 export default {
     name: 'EmailApp',
     template: `
     <section class="email-app-container">
         <email-side-bar></email-side-bar>
-        <email-list :emails="emailsToDisplay"></email-list>
+        <email-list :emails="emailsToDisplay" v-if="emails"></email-list>
     </section>`,
     data() {
         return {

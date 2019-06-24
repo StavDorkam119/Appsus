@@ -1,0 +1,46 @@
+.home-page {
+    position: absolute;
+    top: 70.6px;
+    left: 0;
+    height: calc(100vh - 74px);
+    width: 100%;
+    background-color: rgba(32, 32, 32, 0.849);
+    background-image: url('../../imgs/home-background.jpg');
+    background-size: cover;
+    background-position: center;
+}
+
+.home-page img {
+    position: absolute;
+    z-index: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.68;
+}
+
+.home-page h1 {
+    position: absolute;
+    color: white;
+    top: 37%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 10vw;
+    white-space: nowrap;
+    text-align: center;
+    text-shadow: 0px 0px 2px #f8faf8;
+}
+
+@media (max-width: 991px) {
+    .home-page {
+        height: calc(100vh - 51px);
+        top: 51px;
+    }
+
+    .home-page img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+}

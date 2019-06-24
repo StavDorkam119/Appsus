@@ -10,7 +10,7 @@ const theRoutes = new VueRouter({
 var app = new Vue({
     el: '#app',
     template: `
-    <div>
+    <div class="main">
         <app-header></app-header>
         <router-view></router-view>
     </div>

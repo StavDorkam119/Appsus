@@ -1,6 +1,5 @@
 
-import {utilService} from '../../../services/util.service.js';
-import eventBus from '../../../services/event-bus.service.js';
+import eventBus from '../../../event-bus.js';
 
 export default {
     name: 'keepPrev',
@@ -73,8 +72,10 @@ export default {
             this.currKeep = null;
         },
        sendToEmail() {
-        eventBus.$emit('send-to-email', {title:this.keep.title, type:this.keep.type, data:this.keep.data})
-        this.$router.push('/email/compose');
+           this.$router.push('/email/compose');
+           setTimeout(()=> {
+               eventBus.$emit('send-to-email', {title:this.keep.title, type:this.keep.type, data:this.keep.data})
+           }, 0)
        }
     },
     computed: {

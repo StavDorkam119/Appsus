@@ -7,18 +7,18 @@ import {
 
 import {utilService} from '../services/util.service.js';
 
-import eventBus from '../services/event-bus.service.js';
+import eventBus from '../event-bus.js';
 
 export default {
     name: 'appHeader',
     template: `
         <header class="app-header">
-            <div class="logo" v-if="!this.mobileMode">
+            <div class="logo" v-if="!this.mobileMode" @click="goToHome">
                 <img src="imgs/logo.svg"/>
                 <h1>Appsus</h1>
             </div>
             <div class="toggle-sidebar" v-if="sideBarIcon" @click="toggleSidebar"><i class="fas fa-bars"></i></div>
-            <div class="logo" v-if="this.mobileMode">
+            <div class="logo" v-if="this.mobileMode" @click="goToHome">
                 <img src="imgs/logo.svg"/>
                 <h1>Appsus</h1>
             </div>
@@ -28,22 +28,26 @@ export default {
                 <ul>
                     <li>
                         <router-link to="/" exact>
-                            Home
+                        <i class="fas fa-home" v-if="showMobileIcons"></i>
+                           <span v-else>Home</span>
                         </router-link>
                     </li>
                     <li>
                         <router-link to="/about">
-                            About
+                        <i class="fas fa-horse-head" v-if="showMobileIcons"></i>
+                            <span v-else>About</span>
                         </router-link>
                     </li>
                     <li>
                         <router-link to="/email">
-                            Email
+                        <i class="far fa-envelope" v-if="showMobileIcons"></i>
+                            <span v-else>Email</span>
                         </router-link>
                     </li>
                     <li>
-                        <router-link to="/keep/main">
-                            Keep
+                        <router-link to="/keep/main" >
+                        <i class="far fa-sticky-note" v-if="showMobileIcons"></i>
+                            <span v-else>Keep</span>
                         </router-link>
                     </li>
                 </ul>
@@ -54,7 +58,8 @@ export default {
         return {
             filter: null,
             mobileMode: false,
-            showMobileMenu: false
+            showMobileMenu: false,
+            showMobileIcons: false
         }
     },
     created () {
@@ -66,6 +71,8 @@ export default {
         checkMobileMode() {
             if (utilService.checkIfMobile()) this.mobileMode = true; 
             else this.mobileMode = false;
+            if (window.innerWidth <= 990) this.showMobileIcons = true;
+            else this.showMobileIcons = false;
         },
         toggleMenu() {
             this.showMobileMenu = !this.showMobileMenu;
@@ -78,11 +85,14 @@ export default {
                 this.filter = filters.cmps.find(filter => filter.type === 'email');
             } 
             else (this.filter) = null;
+        },
+        goToHome() {
+            this.$router.push('/');
         }
     },
     computed: {
         menuClass() {
-            if (this.showMobileMenu) return 'shown'; 
+            if (this.showMobileMenu) return 'show-nav-links-header'; 
         },
         sideBarIcon() {
             if (this.mobileMode && this.$route.path.includes('/email')) return true;

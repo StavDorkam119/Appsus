@@ -2,21 +2,27 @@ import {
     emailService
 } from '../../../services/email.service.js';
 
-import eventBus from '../../../services/event-bus.service.js';
+import {utilService} from '../../../services/util.service.js';
+
+import eventBus from '../../../event-bus.js';
 
 export default {
     name: 'EmailDetails',
     template: `
     <section class="email-details-container" v-if="this.email">
+        
         <div class="crud-buttons">
             <router-link to="/email" ><i class="fas fa-arrow-left"></i>Back to Inbox</router-link>
             <button @click="deleteEmail"><i class="fas fa-trash"></i></button>
-            <button @click="replyToEmail">Reply</button>
+            <button @click="replyToEmail">
+                <i class="fas fa-reply"></i>
+            </button>
             <button @click="toggleStarred">
                 <i class="far fa-star" v-if="!email.isStarred"></i>
                 <i class="fas fa-star" v-else="email.isStarred"></i>
             </button>
         </div>
+        <div class="email-details-name-first" :style="{background: nameColor}">{{firstNameIni}}</div>
         <div>
             <h3>{{email.name}}</h3>
             <span>{{email.subject}}</span>
@@ -29,7 +35,8 @@ export default {
     data() {
         return {
             email: null,
-            dateFormatted: null
+            dateFormatted: null,
+            nameColor: this.setRandomColor()
         }
     },
     methods: {
@@ -46,6 +53,14 @@ export default {
         replyToEmail() {
             eventBus.$emit('reply-to-email', this.email)
             this.$router.push(`/email/compose/${this.email.id}`);
+        },
+        setRandomColor() {
+            return utilService.getRandomColor()
+        }
+    },
+    computed: {
+        firstNameIni() {
+            return this.email.name[0];
         }
     },
     created() {

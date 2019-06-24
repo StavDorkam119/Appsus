@@ -1,6 +1,6 @@
 
 import {utilService} from '../../../services/util.service.js';
-import eventBus from '../../../services/event-bus.service.js';
+import eventBus from '../../../event-bus.js';
 import progressBar from '../cmps/email-read-progress.cmp.js';
 
 export default {
