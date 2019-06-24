@@ -8,6 +8,7 @@
     margin-top: 20px;
     display: flex;
     flex-direction: column;
+    transition: all 0.4s;
 }
 
 .email-maker-container h2 {
@@ -29,45 +30,50 @@
 
 .email-maker-container textarea {
     width: 100%;
-    height: 60%;
     font-family: 'Karla', sans-serif;
     resize: none;
     flex-grow: 1;
-    border-bottom: none;
 }
 
 .email-maker-container div {
     display: flex;
     justify-content: space-between;
+    border-right: 1px
 }
 
 .email-maker-container button {
     padding: 10px 1.5em;
+    margin: 10px 5px;
     align-self: flex-start;
     border-radius: 10px;
     background: var(--fourth-color);
     border: 0;
-    margin: 5px 0 5px 5px;
     outline: none;
     font-size: 1.5em;
     font-family: 'Lato', sans-serif;
     color: var(--fifth-color);
     transition: all 0.2s;
+    cursor: pointer;
 }
+
 .email-maker-container button:active, 
 .email-maker-container button:hover  {
     background: #41be41;
 }
 
-.email-maker-container div > button:nth-child(2) {
-    margin: 0;
-    margin: 5px 5px 5px 0px;
-}
 
 @media (max-width: 560px) {
     .email-maker-container {
         margin: 0;
         width: 100%;
         height: calc(100vh - 70px);
+    }
+
+}
+
+@media (max-width: 620px) {
+    .email-maker-container button {
+        padding: 10px;
+        font-size: 1em;
     }
 }

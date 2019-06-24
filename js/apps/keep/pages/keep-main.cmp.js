@@ -6,11 +6,9 @@ import eventBus from '../../../event-bus.js';
 
 
 export default {
-    name: 'mainApp',
+    name: 'keepMainApp',
     template: `
     <section class="keep-main">
-
-
         <div class="main-menu-container flex wrap"> 
             <keep-filter v-on:filtered="setFilter"></keep-filter>
             <keep-sort v-on:sorted="setSort" ></keep-sort>

@@ -13,7 +13,7 @@ export default {
         <textarea cols="20" v-model="composedEmail.body"></textarea>
         <div>
             <button @click="sendEmail">Send</button>
-            <button>Save In Keeps</button>
+            <button @click="sendToKeep">Save In Keeps</button>
             <button @click="discardEmail">Trash</button>
         </div>
     </section>`,
@@ -28,10 +28,6 @@ export default {
             })
         }
         eventBus.$on('send-to-email', this.receiveKeep)
-    },
-    mounted() {
-        console.log('got into mounted')
-        console.log('mounted with:', this.composedEmail.body)
     },
     data () {
         return {
@@ -70,6 +66,12 @@ export default {
                     this.composedEmail.body = listitems.join("\n");;
                 }
             }
+        },
+        sendToKeep() {
+            setTimeout(() => {
+                eventBus.$emit('send-email-to-keep', this.composedEmail);
+            }, 0);
+            this.$router.push('/keep/editor');
         }
     }
 }
