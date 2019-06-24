@@ -83,11 +83,9 @@ function addDataToKeep(data) {
     storageService.store(KEEP_KEY, keeps);
 }
 
-function saveKeep(keep) {
-    let selectedKeep = getById(keep.id);
-    if (!selectedKeep) {
-        addKeep(keep);
-    } else storageService.store(KEEP_KEY, keeps);
+function saveKeep() {
+    storageService.store(KEEP_KEY, keeps);
+    
 }
 
 function deleteKeep(idx) {

@@ -28,7 +28,9 @@ export default {
                         <div v-else class="input-field">Subject...</div>     
                     </div>
                 </div>
+                <div class="content-component">
                 <component :is="keep.type" v-on:send-data="addDataToKeep"></component>
+                </div>
                 </div>
             </div>
 
@@ -137,42 +139,39 @@ export default {
         },
         saveKeep() {
             eventBus.$emit('add-data', this.keep);
-            // if (this.keep.data && !this.keep.title) {
-            //     let answer = confirm('Your keep is empty and will not be saved');
-            //     if (!answer) return; // TODO: fixed this
-            //     else {
-            //         this.$router.push('/keep/main')
-            //         return;
-            //         //TODO: change router location from here
-            //     }
-            // }
-            // else {
-                this.keep.date = Date.now()
+            if(this.keep.type === 'note')
+            if () {
+                alert('Your keep is empty and will not be saved');
+                this.$router.push('/keep/main')
+                return;
+            }
+            else {
+            this.keep.date = Date.now()
                 keepService.addKeep(this.keep)
                 this.initialize()
                 this.$router.push('/keep/main')
-            // }
-        },
-
-        addDataToKeep(data) {
-            this.keep.data = data;
-        },
-        initialize() {
-            eventBus.$emit('delete-data', this.keep);
-            this.keep = keepService.getEmptyKeep()
-            this.titleBeforeEdit = '';
-        },
-        deleteKeep() {
-            this.initialize()
         }
-
     },
-    computed: {
 
+    addDataToKeep(data) {
+        this.keep.data = data;
     },
-    components: {
-        checkList,
-        note
+    initialize() {
+        eventBus.$emit('delete-data', this.keep);
+        this.keep = keepService.getEmptyKeep()
+        this.titleBeforeEdit = '';
+    },
+    deleteKeep() {
+        this.initialize()
     }
+
+},
+computed: {
+
+},
+components: {
+    checkList,
+        note
+}
 }
 

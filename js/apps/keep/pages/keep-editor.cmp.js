@@ -90,23 +90,17 @@ export default {
                     this.keep = keep
                     this.keep.isEditing = true;
                     console.log(this.keep);
-
                 })
         }
         eventBus.$on('send-email-to-keep', (email) => {
-            this.keep = {
-                type: 'note',
-                data: {
-                    content: email.body,
-                    isEditing: false,
-                },
-                title: email.subject,
-                isPinned: false,
-                bgColor: 'lightgray',
-                img: null,
-                isEditing: false,
-                tag: ''
-            }
+            eventBus.$emit('add-data', this.keep);
+            this.keep = keepService.getEmptyKeep();
+            this.keep.type = 'note';
+            this.keep.date = Date.now()
+            this.keep.data = keepService.getEmptyKeep()
+            this.keep.data.content = email.body;
+            this.keep.title = email.subject;
+            keepService.addKeep(this.keep);
         })
     },
 
@@ -154,7 +148,7 @@ export default {
         saveKeep() {
             eventBus.$emit('add-data', this.keep);
             this.keep.date = Date.now()
-            keepService.saveKeep(this.keep)
+            keepService.saveKeep()
             this.initialize()
             this.$router.push('/keep/main')
         },
@@ -171,17 +165,18 @@ export default {
         },
         changeToCheckList() {
             if (this.keep.type === 'checkList') {
-                console.log(this.keep.data);
+                this.lastContent = '';
                 this.checkList = this.keep.data;
                 this.checkList.forEach(item => {
                     if (item.content) this.lastContent += item.content;
                 })
                 this.keep.type = 'note';
+                this.keep.data = null;
                 this.keep.data = keepService.getEmptyNote()
                 this.keep.data.content = this.lastContent;
             } else {
                 this.lastContent = this.keep.data.content;
-                console.log(this.lastContent);
+                this.keep.data = null;
                 this.keep.type = 'checkList';
                 this.checkList.push(keepService.getEmptyCheckItem())
                 this.keep.data = this.checkList;
