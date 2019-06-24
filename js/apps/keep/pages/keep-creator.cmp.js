@@ -139,7 +139,8 @@ export default {
         },
         saveKeep() {
             eventBus.$emit('add-data', this.keep);
-            if (!this.keep.data.content) {
+            if(this.keep.type === 'note')
+            if () {
                 alert('Your keep is empty and will not be saved');
                 this.$router.push('/keep/main')
                 return;
