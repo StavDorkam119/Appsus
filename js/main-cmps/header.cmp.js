@@ -28,21 +28,25 @@ export default {
                 <ul>
                     <li>
                         <router-link to="/" exact>
-                            Home
+                        <i class="fas fa-home" v-if="showMobileIcons"></i>
+                           <span>Home</span>
                         </router-link>
                     </li>
                     <li>
                         <router-link to="/about">
+                        <i class="fas fa-horse-head" v-if="showMobileIcons"></i>
                             About
                         </router-link>
                     </li>
                     <li>
                         <router-link to="/email">
+                        <i class="far fa-envelope" v-if="showMobileIcons"></i>
                             Email
                         </router-link>
                     </li>
                     <li>
-                        <router-link to="/keep/main">
+                        <router-link to="/keep/main" >
+                        <i class="far fa-sticky-note" v-if="showMobileIcons"></i>
                             Keep
                         </router-link>
                     </li>
@@ -54,7 +58,8 @@ export default {
         return {
             filter: null,
             mobileMode: false,
-            showMobileMenu: false
+            showMobileMenu: false,
+            showMobileIcons: false
         }
     },
     created () {
@@ -66,6 +71,8 @@ export default {
         checkMobileMode() {
             if (utilService.checkIfMobile()) this.mobileMode = true; 
             else this.mobileMode = false;
+            if (window.innerWidth <= 990) this.showMobileIcons = true;
+            else this.showMobileIcons = false;
         },
         toggleMenu() {
             this.showMobileMenu = !this.showMobileMenu;
@@ -82,7 +89,7 @@ export default {
     },
     computed: {
         menuClass() {
-            if (this.showMobileMenu) return 'shown'; 
+            if (this.showMobileMenu) return 'show-nav-links-header'; 
         },
         sideBarIcon() {
             if (this.mobileMode && this.$route.path.includes('/email')) return true;

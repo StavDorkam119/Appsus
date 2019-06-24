@@ -20,6 +20,8 @@
 @import './email/email-details.css';
 @import './email/email-maker.css';
 
+/* HOME */
+@import './home/home-main.css';
 
 @font-face {
     font-family: 'Karla';
@@ -54,5 +56,7 @@ body {
     font-family: 'Lato', sans-serif;
 }
 
-
+.main {
+    position: relative;
+}
 /* Helpers */

@@ -48,8 +48,10 @@ export default {
             this.$router.push(`editor/${this.keep.id}`)
         },
        sendToEmail() {
-        eventBus.$emit('send-to-email', {title:this.keep.title, type:this.keep.type, data:this.keep.data})
-        this.$router.push('/email/compose');
+           this.$router.push('/email/compose');
+           setTimeout(()=> {
+               eventBus.$emit('send-to-email', {title:this.keep.title, type:this.keep.type, data:this.keep.data})
+           }, 0)
        }
     },
     computed: {

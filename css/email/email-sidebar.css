@@ -1,6 +1,6 @@
 .email-app-sidebar-container {
     min-width: 200px;
-    background-color: var(--second-color);
+    background-color: rgb(79, 79, 79);
     position: sticky;
     top: 0;
     display: flex;
@@ -14,23 +14,22 @@
     border-radius: 28px;
     color: #ffffff;
     font-size: 20px;
-    background: #8c34d9;
+    background: #929292;
     padding: 10px 40px;
     text-decoration: none;
     text-align: center;
+    margin-bottom: 10px;
 }
 
 .email-app-sidebar-container button {
-    margin-top: 1em;
-    border-bottom: 1px solid grey;
-    padding: 8px;
-    border-radius: 0px 25px 25px 0px;
+    color: #d8d8d8;
+    padding: 15px;
     text-align: justify;
     border: 0;
     font-size: 1em;
-    background: var(--fifth-color);
+    background: transparent;
     margin-right: 5px;
-    box-shadow: 0px 0px 5px black;
+    border-bottom: 1px solid #737373;
     transition: all 0.2s;
     outline: none;
 }
@@ -49,13 +48,13 @@
 }
 
 .progress-bar {
-    background: rgba(57, 57, 57, 0.99);
+    background: rgb(248, 250, 248);
     margin-top: 1em;
     align-self: center;
     min-width: 9.375em;
     text-align: center;
     border-radius: 25px;
-    padding: 0.5em 0;
+    padding: 0.2em 0;
     position: relative;
     font-style: italic;
 }
@@ -65,7 +64,7 @@
     left: 0;
     top: 0;
     bottom: 0;
-    background-color: var(--third-color);
+    background-color: rgb(178, 183, 194);
     border-radius: 25px;
 }
 
@@ -84,6 +83,8 @@
         height: 100vh;
         transform: translateX(-100%);
         align-items: stretch;
+        transition: 0.5s;
+        transform-origin: left;
     }
 
     .email-app-sidebar-container .link-to-compose {

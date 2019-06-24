@@ -28,6 +28,10 @@ export default {
         }
         eventBus.$on('send-to-email', this.receiveKeep)
     },
+    mounted() {
+        console.log('got into mounted')
+        console.log('mounted with:', this.composedEmail.body)
+    },
     data () {
         return {
             composedEmail: {
@@ -55,9 +59,15 @@ export default {
         },
         receiveKeep(keep) {
             if (keep) {
-                console.log('got to recieve keep', keep)
-                this.composedEmail.subject = keep.title;
+                console.log(keep);
+                if (keep.title) this.composedEmail.subject = keep.title;
                 if (keep.type === 'note') this.composedEmail.body = keep.data.content;
+                else if (keep.type === 'checkList') {
+                    let listitems = keep.data.map(item => {
+                        return `◾ ${item.content}`
+                    })
+                    this.composedEmail.body = listitems.join("\n");;
+                }
             }
         }
     }
