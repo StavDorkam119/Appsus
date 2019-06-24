@@ -11,25 +11,28 @@ export default {
     template: `
     <section class="email-details-container" v-if="this.email">
         
-        <div class="crud-buttons">
-            <router-link to="/email" ><i class="fas fa-arrow-left"></i>Back to Inbox</router-link>
-            <button @click="deleteEmail"><i class="fas fa-trash"></i></button>
-            <button @click="replyToEmail">
-                <i class="fas fa-reply"></i>
-            </button>
-            <button @click="toggleStarred">
-                <i class="far fa-star" v-if="!email.isStarred"></i>
-                <i class="fas fa-star" v-else="email.isStarred"></i>
-            </button>
+        <div class="buttons-container">
+            <router-link to="/email" ><i class="fas fa-arrow-left"></i><span>Back to Inbox</span></router-link>
+            <div class="crud-buttons">
+                <button @click="deleteEmail"><i class="fas fa-trash"></i></button>
+                <button @click="replyToEmail">
+                    <i class="fas fa-reply"></i>
+                </button>
+                <button @click="toggleStarred">
+                    <i class="far fa-star" v-if="!email.isStarred"></i>
+                    <i class="fas fa-star" v-else="email.isStarred"></i>
+                </button>
+            </div>
         </div>
         <div class="email-details-name-first" :style="{background: nameColor}">{{firstNameIni}}</div>
-        <div>
-            <h3>{{email.name}}</h3>
-            <span>{{email.subject}}</span>
-            <span>Date Received: {{dateFormatted}}</span>
-        </div>
+        <p>{{email.name}}</p>
         <br>
-        <p>{{email.body}}</p>
+        <p class="subject">{{email.subject}}</p>
+        <br>
+        <br>
+        <p class="date">Date Received: {{dateFormatted}}</p>
+        <br>
+        <p class="body">{{email.body}}</p>
         
     </section>`,
     data() {

@@ -79,7 +79,7 @@
         position: fixed;
         top: 51px;
         left: 0;
-        width: 75%;
+        width: 50%;
         height: 100vh;
         transform: translateX(-100%);
         align-items: stretch;
