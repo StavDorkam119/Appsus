@@ -159,18 +159,19 @@ export default {
         },
         changeToCheckList() {
             if (this.keep.type === 'checkList') {
-                console.log(this.keep.data);
+                this.lastContent = '';
                 this.checkList = this.keep.data;
                 this.checkList.forEach(item => {
                     if(item.content) this.lastContent += item.content;
                 })
                 this.keep.type = 'note';
+                this.keep.data = null;
                 this.keep.data = keepService.getEmptyNote()
                 this.keep.data.content = this.lastContent;
             }
             else {
                 this.lastContent = this.keep.data.content;
-                console.log(this.lastContent);
+                this.keep.data = null;
                 this.keep.type = 'checkList';
                 this.checkList.push(keepService.getEmptyCheckItem())
                 this.keep.data = this.checkList;

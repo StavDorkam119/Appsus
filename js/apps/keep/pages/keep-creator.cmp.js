@@ -28,7 +28,9 @@ export default {
                         <div v-else class="input-field">Subject...</div>     
                     </div>
                 </div>
+                <div class="content-component">
                 <component :is="keep.type" v-on:send-data="addDataToKeep"></component>
+                </div>
                 </div>
             </div>
 
