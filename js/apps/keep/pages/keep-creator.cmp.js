@@ -1,4 +1,6 @@
-import { keepService } from '../../../services/keep.service.js';
+import {
+    keepService
+} from '../../../services/keep.service.js';
 import eventBus from '../../../event-bus.js';
 import checkList from '../cmps/keep-checklist.cmp.js'
 import note from '../cmps/keep-note.cmp.js'
@@ -99,8 +101,7 @@ export default {
         changeToCheckList() {
             if (this.keep.type === 'checkList') {
                 this.keep.type = 'note'
-            }
-            else {
+            } else {
                 this.keep.type = 'checkList'
             }
         },
@@ -139,39 +140,38 @@ export default {
         },
         saveKeep() {
             eventBus.$emit('add-data', this.keep);
-            if(this.keep.type === 'note')
-            if () {
-                alert('Your keep is empty and will not be saved');
-                this.$router.push('/keep/main')
-                return;
-            }
+            if (this.keep.type === 'note')
+                if () {
+                    alert('Your keep is empty and will not be saved');
+                    this.$router.push('/keep/main')
+                    return;
+                }
             else {
-            this.keep.date = Date.now()
+                this.keep.date = Date.now()
                 keepService.addKeep(this.keep)
                 this.initialize()
                 this.$router.push('/keep/main')
+            }
+        },
+
+        addDataToKeep(data) {
+            this.keep.data = data;
+        },
+        initialize() {
+            eventBus.$emit('delete-data', this.keep);
+            this.keep = keepService.getEmptyKeep()
+            this.titleBeforeEdit = '';
+        },
+        deleteKeep() {
+            this.initialize()
         }
-    },
 
-    addDataToKeep(data) {
-        this.keep.data = data;
     },
-    initialize() {
-        eventBus.$emit('delete-data', this.keep);
-        this.keep = keepService.getEmptyKeep()
-        this.titleBeforeEdit = '';
+    computed: {
+
     },
-    deleteKeep() {
-        this.initialize()
-    }
-
-},
-computed: {
-
-},
-components: {
-    checkList,
+    components: {
+        checkList,
         note
+    }
 }
-}
-

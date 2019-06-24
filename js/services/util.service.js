@@ -14,7 +14,7 @@ function getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min)) + min; //The maximum is exclusive and the minimum is inclusive
 }
 
-function makeId(length=5) {
+function makeId(length = 5) {
     var text = '';
     var possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
 
@@ -46,20 +46,20 @@ function colorLog(message, color) {
     color = color || "black";
 
     switch (color) {
-        case "success":  
-             color = "Green"; 
-             break;
-        case "info":     
-                color = "DodgerBlue";  
-             break;
-        case "error":   
-             color = "Red";     
-             break;
-        case "warning":  
-             color = "Orange";   
-             break;
-        default: 
-             color = color;
+        case "success":
+            color = "Green";
+            break;
+        case "info":
+            color = "DodgerBlue";
+            break;
+        case "error":
+            color = "Red";
+            break;
+        case "warning":
+            color = "Orange";
+            break;
+        default:
+            color = color;
     }
 
     console.log("%c" + message, "color:" + color);
@@ -85,29 +85,29 @@ function getRandomColor() {
     var letters = '0123456789ABCDEF';
     var color = '#';
     for (var i = 0; i < 6; i++) {
-      color += letters[Math.floor(Math.random() * 16)];
+        color += letters[Math.floor(Math.random() * 16)];
     }
     return color;
-  }
+}
 
 
 
-function checkIfMobile () {
+function checkIfMobile() {
     if (window.innerWidth <= 560) return true;
     else return false;
 }
 
 
 
-function timeConverter(UNIX_timestamp){
+function timeConverter(UNIX_timestamp) {
     var a = new Date(UNIX_timestamp * 1000);
-    var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+    var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
     var year = a.getFullYear();
     var month = months[a.getMonth()];
     var date = a.getDate();
     var hour = a.getHours();
     var min = a.getMinutes();
     var sec = a.getSeconds();
-    var time = date + ' ' + month + ' ' + year + ' ' + hour + ':' + min + ':' + sec ;
+    var time = date + ' ' + month + ' ' + year + ' ' + hour + ':' + min + ':' + sec;
     return time;
 }

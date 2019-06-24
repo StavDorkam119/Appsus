@@ -1,36 +1,36 @@
 import {
-    storageService
+  storageService
 } from './storage.service.js';
 import {
-    utilService
+  utilService
 } from './util.service.js';
 
 const EMAIL_KEY = 'emails';
 
 
 export const emailService = {
-    query,
-    getEmailById,
-    filterEmails,
-    updateEmail,
-    deleteEmail,
-    addEmail
+  query,
+  getEmailById,
+  filterEmails,
+  updateEmail,
+  deleteEmail,
+  addEmail
 }
 
 function getEmailById(id) {
-    const emails = storageService.load(EMAIL_KEY);
-    const email = emails.find(email => email.id === id);
-    return Promise.resolve(email);
+  const emails = storageService.load(EMAIL_KEY);
+  const email = emails.find(email => email.id === id);
+  return Promise.resolve(email);
 }
 
 
 function query() {
-    let emails = storageService.load(EMAIL_KEY);
-    if (!emails || !emails.length) {
-        emails = _generateEmails()
-        storageService.store(EMAIL_KEY, emails);
-    }
-    return Promise.resolve(emails);
+  let emails = storageService.load(EMAIL_KEY);
+  if (!emails || !emails.length) {
+    emails = _generateEmails()
+    storageService.store(EMAIL_KEY, emails);
+  }
+  return Promise.resolve(emails);
 }
 
 function addEmail(email) {
@@ -50,7 +50,7 @@ function deleteEmail(id) {
   const emails = storageService.load(EMAIL_KEY);
   const emailToDeleteIdx = emails.findIndex(email => email.id === id);
   emails.splice(emailToDeleteIdx, 1);
-  storageService.store(EMAIL_KEY, emails);  
+  storageService.store(EMAIL_KEY, emails);
 }
 
 
@@ -78,14 +78,13 @@ function filterEmails(emails, filter) {
     })
   }
   if (filter.sortOptions === 'name') {
-    filteredEmails.sort((a,b) => {
+    filteredEmails.sort((a, b) => {
       if (a.name.toLowerCase() < b.name.toLowerCase()) return -1;
       if (a.name.toLowerCase() > b.name.toLowerCase()) return 1;
       return 0
     })
-  }
-  else if (filter.sortOptions === 'title') {
-    filteredEmails.sort((a,b) => {
+  } else if (filter.sortOptions === 'title') {
+    filteredEmails.sort((a, b) => {
       if (a.subject.toLowerCase() < b.subject.toLowerCase()) return -1;
       if (a.subject.toLowerCase() > b.subject.toLowerCase()) return 1;
       return 0
@@ -97,8 +96,7 @@ function filterEmails(emails, filter) {
 }
 
 function _generateEmails() {
-  return [
-    {
+  return [{
       "id": "5d0e2bd57ff4d574b2ff867b",
       "body": "Adipisicing deserunt in laborum enim. Aute in minim enim ut fugiat reprehenderit esse id adipisicing Lorem adipisicing officia aliqua labore. Veniam adipisicing et ipsum laborum. Quis commodo sunt dolor pariatur officia occaecat proident exercitation in Lorem duis aute anim. Sint qui enim labore sint consectetur. Nulla esse velit ullamco culpa laborum exercitation aliquip nulla mollit commodo incididunt.\r\nExcepteur duis sint nisi qui consectetur deserunt sit duis. Aliqua commodo laboris culpa et duis labore duis tempor sit duis incididunt proident. Eiusmod veniam cillum consequat sint.\r\n",
       "subject": "est nisi pariatur consequat cupidatat",

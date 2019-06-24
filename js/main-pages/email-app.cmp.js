@@ -2,7 +2,7 @@ import {
     emailService
 } from '../services/email.service.js';
 import emailList from '../apps/email/pages/email-list.cmp.js';
-import emailSideBar from '../apps/email/cmps/email-sidebar.cmp.js'; 
+import emailSideBar from '../apps/email/cmps/email-sidebar.cmp.js';
 import eventBus from '../event-bus.js';
 
 export default {
@@ -20,20 +20,20 @@ export default {
     },
     computed: {
         emailsToDisplay() {
-            if (!this.filter || !this.filter.searchTerm && 
-                this.filter.filterOptions === 'none' 
-                && this.filter.sortOptions === 'none' 
-                && !this.filter.isStarredOn 
-                && !this.filter.showDrafts
-                && !this.filter.showSent) return this.emails;
+            if (!this.filter || !this.filter.searchTerm &&
+                this.filter.filterOptions === 'none' &&
+                this.filter.sortOptions === 'none' &&
+                !this.filter.isStarredOn &&
+                !this.filter.showDrafts &&
+                !this.filter.showSent) return this.emails;
             return emailService.filterEmails(this.emails, this.filter)
         }
     },
     created() {
         emailService.query().then(res => this.emails = res)
         eventBus.$on('filter-emails', filter => {
-            if(filter.filterOptions && filter.filterOptions === 'true') filter.filterOptions = true;
-            else if(filter.filterOptions && filter.filterOptions === 'false') filter.filterOptions = false;
+            if (filter.filterOptions && filter.filterOptions === 'true') filter.filterOptions = true;
+            else if (filter.filterOptions && filter.filterOptions === 'false') filter.filterOptions = false;
             this.filter = filter;
         })
     },

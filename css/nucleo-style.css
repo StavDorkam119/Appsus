@@ -4,7 +4,10 @@ Nucleo Web Font
 Generated using nucleoapp.com
 
 -------------------------------- */
-body{background-color: red}
+body {
+  background-color: red
+}
+
 @font-face {
   font-family: 'Nucleo';
   src: url('../icon-font/fonts/Nucleo.eot');
@@ -12,6 +15,7 @@ body{background-color: red}
   font-weight: normal;
   font-style: normal;
 }
+
 /*------------------------
 	base class definition
 -------------------------*/
@@ -24,6 +28,7 @@ body{background-color: red}
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
 /*------------------------
   change icon size
 -------------------------*/
@@ -31,16 +36,20 @@ body{background-color: red}
 .icon-sm {
   font-size: 0.8em;
 }
+
 .icon-lg {
   font-size: 1.2em;
 }
+
 /* absolute units */
 .icon-16 {
   font-size: 16px;
 }
+
 .icon-32 {
   font-size: 32px;
 }
+
 /*----------------------------------
   add a square/circle background
 -----------------------------------*/
@@ -50,9 +59,11 @@ body{background-color: red}
   color: #fff;
   background-color: #333;
 }
+
 .icon-bg-circle {
   border-radius: 50%;
 }
+
 /*------------------------------------
   use icons as list item markers
 -------------------------------------*/
@@ -60,15 +71,18 @@ body{background-color: red}
   padding-left: 0;
   list-style-type: none;
 }
-.icon-ul > li {
+
+.icon-ul>li {
   display: flex;
   align-items: flex-start;
   line-height: 1.4;
 }
-.icon-ul > li > .icon {
+
+.icon-ul>li>.icon {
   margin-right: 0.4em;
   line-height: inherit;
 }
+
 /*------------------------
   spinning icons
 -------------------------*/
@@ -77,22 +91,27 @@ body{background-color: red}
   -moz-animation: icon-spin 2s infinite linear;
   animation: icon-spin 2s infinite linear;
 }
+
 @-webkit-keyframes icon-spin {
   0% {
     -webkit-transform: rotate(0deg);
   }
+
   100% {
     -webkit-transform: rotate(360deg);
   }
 }
+
 @-moz-keyframes icon-spin {
   0% {
     -moz-transform: rotate(0deg);
   }
+
   100% {
     -moz-transform: rotate(360deg);
   }
 }
+
 @keyframes icon-spin {
   0% {
     -webkit-transform: rotate(0deg);
@@ -101,6 +120,7 @@ body{background-color: red}
     -o-transform: rotate(0deg);
     transform: rotate(0deg);
   }
+
   100% {
     -webkit-transform: rotate(360deg);
     -moz-transform: rotate(360deg);
@@ -109,6 +129,7 @@ body{background-color: red}
     transform: rotate(360deg);
   }
 }
+
 /*------------------------
   rotated/flipped icons
 -------------------------*/
@@ -120,6 +141,7 @@ body{background-color: red}
   -o-transform: rotate(90deg);
   transform: rotate(90deg);
 }
+
 .icon-rotate-180 {
   filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=2);
   -webkit-transform: rotate(180deg);
@@ -128,6 +150,7 @@ body{background-color: red}
   -o-transform: rotate(180deg);
   transform: rotate(180deg);
 }
+
 .icon-rotate-270 {
   filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
   -webkit-transform: rotate(270deg);
@@ -136,6 +159,7 @@ body{background-color: red}
   -o-transform: rotate(270deg);
   transform: rotate(270deg);
 }
+
 .icon-flip-y {
   filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=0);
   -webkit-transform: scale(-1, 1);
@@ -144,6 +168,7 @@ body{background-color: red}
   -o-transform: scale(-1, 1);
   transform: scale(-1, 1);
 }
+
 .icon-flip-x {
   filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=2);
   -webkit-transform: scale(1, -1);
@@ -152,6 +177,7 @@ body{background-color: red}
   -o-transform: scale(1, -1);
   transform: scale(1, -1);
 }
+
 /*------------------------
 	icons
 -------------------------*/
@@ -555,4 +581,3 @@ body{background-color: red}
 .icon-close::before {
   content: "\ea65";
 }
-

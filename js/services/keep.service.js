@@ -85,7 +85,7 @@ function addDataToKeep(data) {
 
 function saveKeep() {
     storageService.store(KEEP_KEY, keeps);
-    
+
 }
 
 function deleteKeep(idx) {
@@ -97,8 +97,7 @@ function deleteKeep(idx) {
 
 
 function _generateKeeps() {
-    return [
-        {
+    return [{
             "id": "5d10ade1b50ab63f07a600ae",
             "type": "note",
             "isEditing": false,
@@ -182,8 +181,7 @@ function _generateKeeps() {
             "id": "5d10ade4e547cb3",
             "type": "checkList",
             "isEditing": false,
-            "data": [
-                {
+            "data": [{
                     "id": "5d10b2b8f3a1ba49e0c",
                     "content": "cillum commodo occaecat",
                     "isEditing": false,
@@ -231,8 +229,7 @@ function _generateKeeps() {
             "id": "5d10ade1ffdd016c",
             "type": "checkList",
             "isEditing": false,
-            "data": [
-                {
+            "data": [{
                     "id": "0b2b8f3a1ba492d4c0e0c",
                     "content": "cillum commodo occaecat",
                     "isEditing": false,
@@ -279,4 +276,3 @@ function _generateKeeps() {
 
     ]
 }
-

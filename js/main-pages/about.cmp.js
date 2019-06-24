@@ -1,4 +1,3 @@
-
 export default {
     template: `
     <section class="about-container">

@@ -1,5 +1,6 @@
-
-import {utilService} from '../../../services/util.service.js';
+import {
+    utilService
+} from '../../../services/util.service.js';
 import eventBus from '../../../event-bus.js';
 import progressBar from '../cmps/email-read-progress.cmp.js';
 
@@ -15,13 +16,13 @@ export default {
         <button @click="updateFilterSent"><i class="fas fa-paper-plane"></i>Sent</button>
         <progress-bar></progress-bar>
     </section>`,
-    data () {
-        return{
+    data() {
+        return {
             isMobileOn: false,
             showMobileSideBar: false
         }
     },
-    created () {
+    created() {
         this.checkMobileMode();
         window.addEventListener('resize', this.checkMobileMode)
         eventBus.$on('show-sidebar', () => {
@@ -30,7 +31,7 @@ export default {
     },
     methods: {
         checkMobileMode() {
-            if (utilService.checkIfMobile()) this.isMobileOn = true; 
+            if (utilService.checkIfMobile()) this.isMobileOn = true;
             else this.isMobileOn = false;
         },
         updateFilterNone() {

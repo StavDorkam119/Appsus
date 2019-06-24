@@ -1,8 +1,7 @@
-
 import keepPrev from './keep-prev.cmp.js';
 
 export default {
-    name: 'keepList', 
+    name: 'keepList',
     template: `
     <section class="keep-list">
         <div class="pined-container grid">
@@ -17,26 +16,25 @@ export default {
         </div>
     </section>
     `,
-   
+
     props: ['keeps'],
 
     data() {
         return {
-            
+
         }
     },
     created() {
-    
+
     },
-  
+
     methods: {
-       
+
     },
     computed: {
-        
+
     },
     components: {
         keepPrev
     }
 }
-
