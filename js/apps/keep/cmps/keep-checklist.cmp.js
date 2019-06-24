@@ -45,7 +45,6 @@ export default {
         this.currItem = keepService.getEmptyCheckItem()
         eventBus.$on('add-data', this.addCheckList);
         eventBus.$on('delete-data', this.initialize)
-        console.log()
     },
 
     directives: {
@@ -57,17 +56,12 @@ export default {
     },
 
     methods: {
-        updateContent() {
-            console.log();
-        },
-
         addItem() {
             if (!this.txt) return;
             this.currItem.content = this.txt;
             this.checkList.unshift(this.currItem);
             this.txt = '';
             this.currItem = keepService.getEmptyCheckItem();
-            console.log(this.checkList)
         },
         removeItem(idx) {
             this.checkList.splice(idx, 1);
@@ -102,10 +96,4 @@ export default {
             this.checkList = [];
         }
     },
-    computed: {
-
-    },
-    components: {
-
-    }
 }

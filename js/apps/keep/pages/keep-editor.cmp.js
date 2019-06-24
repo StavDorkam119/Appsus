@@ -89,7 +89,6 @@ export default {
                 .then(keep => {
                     this.keep = keep
                     this.keep.isEditing = true;
-                    console.log(this.keep);
                 })
         }
         eventBus.$on('send-email-to-keep', (email) => {
