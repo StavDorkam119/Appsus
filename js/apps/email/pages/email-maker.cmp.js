@@ -13,6 +13,7 @@ export default {
         <textarea cols="20" v-model="composedEmail.body"></textarea>
         <div>
             <button @click="sendEmail">Send</button>
+            <button>Save In Keeps</button>
             <button @click="discardEmail">Trash</button>
         </div>
     </section>`,

@@ -1,9 +1,8 @@
 import { keepService } from '../../../services/keep.service.js';
-import { utilService } from '../../../services/util.service.js';
 import keepList from '../cmps/keep-list.cmp.js';
 import keepFilter from '../cmps/keep-filter.cmp.js';
 import keepSort from '../cmps/keep-sort.cmp.js';
-import eventBus from '../../../services/event-bus.service.js';
+import eventBus from '../../../event-bus.js';
 
 
 export default {
