@@ -16,7 +16,7 @@ export default [
     {path: '/keep', component: keepApp, children:
     [
         {path: 'main', component: keepMain},
-        {path: 'editor/:keepId', component: keepEditor},
+        {path: 'editor/:keepId?', component: keepEditor},
         {path: 'creator', component: keepCreator}
     ]},
     {path: '/email', component: emailApp},

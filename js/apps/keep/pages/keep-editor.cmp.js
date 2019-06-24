@@ -1,4 +1,6 @@
-import { keepService } from '../../../services/keep.service.js';
+import {
+    keepService
+} from '../../../services/keep.service.js';
 import eventBus from '../../../event-bus.js';
 import checkList from '../cmps/keep-checklist.cmp.js'
 import note from '../cmps/keep-note.cmp.js'
@@ -82,15 +84,32 @@ export default {
     },
     created() {
         const keepId = this.$route.params.keepId;
-        keepService.getById(keepId)
-        .then(keep => {
-            this.keep = keep
-            this.keep.isEditing = true;
-            console.log(this.keep);
-            
+        if (keepId) {
+            keepService.getById(keepId)
+                .then(keep => {
+                    this.keep = keep
+                    this.keep.isEditing = true;
+                    console.log(this.keep);
+
+                })
+        }
+        eventBus.$on('send-email-to-keep', (email) => {
+            this.keep = {
+                type: 'note',
+                data: {
+                    content: email.body,
+                    isEditing: false,
+                },
+                title: email.subject,
+                isPinned: false,
+                bgColor: 'lightgray',
+                img: null,
+                isEditing: false,
+                tag: ''
+            }
         })
     },
-  
+
     directives: {
         focus: {
             inserted: function (el) {
@@ -134,19 +153,12 @@ export default {
         },
         saveKeep() {
             eventBus.$emit('add-data', this.keep);
-            // if (this.keep.data.length === 0 && !this.keep.title) {
-            //     let answer = confirm('are you sure? Your keep is empty');
-            //     if (answer || !answer) return; // TODO: fixed this
-                // else {
-                    this.keep.date = Date.now()
-                    keepService.saveKeep()
-                    this.initialize()
-                    this.$router.push('/keep/main')
-                    //TODO: change router location from here
-                // }
-            // }
+            this.keep.date = Date.now()
+            keepService.saveKeep(this.keep)
+            this.initialize()
+            this.$router.push('/keep/main')
         },
-        addDataToKeep(data) { 
+        addDataToKeep(data) {
             this.keep.data = data;
         },
         initialize() {
@@ -162,14 +174,13 @@ export default {
                 this.lastContent = '';
                 this.checkList = this.keep.data;
                 this.checkList.forEach(item => {
-                    if(item.content) this.lastContent += item.content;
+                    if (item.content) this.lastContent += item.content;
                 })
                 this.keep.type = 'note';
                 this.keep.data = null;
                 this.keep.data = keepService.getEmptyNote()
                 this.keep.data.content = this.lastContent;
-            }
-            else {
+            } else {
                 this.lastContent = this.keep.data.content;
                 this.keep.data = null;
                 this.keep.type = 'checkList';
@@ -178,9 +189,6 @@ export default {
                 this.keep.data[0].content = this.lastContent;
             }
         },
-    },
-    computed: {
-
     },
     components: {
         checkList,
