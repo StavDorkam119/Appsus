@@ -94,9 +94,6 @@
 }
 
 
-
-
-
 .pin-icon.active {
     color: black;
     font-weight: bold;
@@ -135,12 +132,18 @@ textarea {
 background-color: rgba(255, 255, 255, 0);
 }
 
+.note-content {
+    display: flex;
+}
+
+
 .input-field {
     /* border: 1px solid rgba(112, 112, 112, 0.726); */
+    display: flex;
     padding: 10px;  
     font-size: 16px;
     font-family:Karla;
-    width: 100%;
+   
     color: rgb(75, 74, 74);
     margin: 5px;
 }
@@ -150,7 +153,7 @@ background-color: rgba(255, 255, 255, 0);
     padding: 10px;
     font-size: 16px;
     font-family:Karla;
-    width: 100%;
+    
     margin: 5px;
     background-color: rgba(0, 0, 0, 0);
     display: flex;
@@ -170,7 +173,7 @@ background-color: rgba(255, 255, 255, 0);
     padding: 10px;
     font-size: 16px;
     font-family:Karla;
-    width: 100%;
+    
     display: flex;
     min-height: 200px;
 }
