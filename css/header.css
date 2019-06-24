@@ -18,7 +18,7 @@
 .app-header .logo {
     display: flex;
     align-items: center;
-    
+    cursor: pointer;
 }
 
 .app-header .logo img {
@@ -68,7 +68,7 @@
 .header-links-container ul li a{
     text-decoration: none;
     display: block;
-    width: 76px;
+    width: 77px;
     height: 100%;
     text-align: center;
     color: var(--primary-color);
@@ -98,23 +98,31 @@
         position: absolute;
         top: 100%;
         right: 0;
-        width: 261px;
-        background: wheat;
+        /* width: 261px; */
+        background: #e9e6e0;
     }
 
     .header-links-container ul {
         display: grid;
         grid-gap: 10px;
         padding: 10px;
-        grid-template-columns: repeat(auto-fit, minmax(70px, 1fr))
+        grid-template-columns: repeat(2, 70px) ;
+        grid-auto-rows: 70px;
     }
 
     .header-links-container ul li {
         border: 0;
+        display: block;
+        line-height: unset;
     }
 
-    .header-links-container ul li{
-        display: block;
+    .header-links-container ul li a {
+        width: unset;
+    }
+
+    .header-links-container ul li i{
+        font-size: 2em;
+        line-height: 70px;
     }
     /* Helpers */
     .show-nav-links-header {

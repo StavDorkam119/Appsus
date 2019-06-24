@@ -13,12 +13,12 @@ export default {
     name: 'appHeader',
     template: `
         <header class="app-header">
-            <div class="logo" v-if="!this.mobileMode">
+            <div class="logo" v-if="!this.mobileMode" @click="goToHome">
                 <img src="imgs/logo.svg"/>
                 <h1>Appsus</h1>
             </div>
             <div class="toggle-sidebar" v-if="sideBarIcon" @click="toggleSidebar"><i class="fas fa-bars"></i></div>
-            <div class="logo" v-if="this.mobileMode">
+            <div class="logo" v-if="this.mobileMode" @click="goToHome">
                 <img src="imgs/logo.svg"/>
                 <h1>Appsus</h1>
             </div>
@@ -29,25 +29,25 @@ export default {
                     <li>
                         <router-link to="/" exact>
                         <i class="fas fa-home" v-if="showMobileIcons"></i>
-                           <span>Home</span>
+                           <span v-else>Home</span>
                         </router-link>
                     </li>
                     <li>
                         <router-link to="/about">
                         <i class="fas fa-horse-head" v-if="showMobileIcons"></i>
-                            About
+                            <span v-else>About</span>
                         </router-link>
                     </li>
                     <li>
                         <router-link to="/email">
                         <i class="far fa-envelope" v-if="showMobileIcons"></i>
-                            Email
+                            <span v-else>Email</span>
                         </router-link>
                     </li>
                     <li>
                         <router-link to="/keep/main" >
                         <i class="far fa-sticky-note" v-if="showMobileIcons"></i>
-                            Keep
+                            <span v-else>Keep</span>
                         </router-link>
                     </li>
                 </ul>
@@ -85,6 +85,9 @@ export default {
                 this.filter = filters.cmps.find(filter => filter.type === 'email');
             } 
             else (this.filter) = null;
+        },
+        goToHome() {
+            this.$router.push('/');
         }
     },
     computed: {

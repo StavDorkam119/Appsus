@@ -34,11 +34,10 @@ export default {
     <div class="keep-menu">
     
     <select v-model="keep.type" class="keep-type" title="type">
-    <option disabled value="">Select Type</option>
-    <option value="note">Note</option>
-    <option value="checkList">Checklist</option>
+        <option disabled value="">Select Type</option>
+        <option value="note">Note</option>
+        <option value="checkList">Checklist</option>
     </select>
-    
         <input type="color" v-model="keep.bgColor" class="color-picker" title="background color"/>
         <input type="file" @change="uploadNewImg" title="upload image" />
         <button class="btn-pin" title="pin" @click="pinKeep">

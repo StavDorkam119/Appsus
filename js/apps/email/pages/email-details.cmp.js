@@ -8,6 +8,7 @@ export default {
     name: 'EmailDetails',
     template: `
     <section class="email-details-container" v-if="this.email">
+        <div class="">{{firstNameIni}}</div>
         <div class="crud-buttons">
             <router-link to="/email" ><i class="fas fa-arrow-left"></i>Back to Inbox</router-link>
             <button @click="deleteEmail"><i class="fas fa-trash"></i></button>
@@ -46,6 +47,11 @@ export default {
         replyToEmail() {
             eventBus.$emit('reply-to-email', this.email)
             this.$router.push(`/email/compose/${this.email.id}`);
+        }
+    },
+    computed: {
+        firstNameIni() {
+            return this.email.name[0];
         }
     },
     created() {

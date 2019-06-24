@@ -4,7 +4,8 @@ export default {
     name: 'homePage',
     template: `
     <section class="home-page">
-        
+    <!-- <img src="imgs/galloping-horse.gif" /> -->
+    <h1>Welcome to Appsus</h1>
     </section>
     `,
 }

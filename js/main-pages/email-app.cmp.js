@@ -10,7 +10,7 @@ export default {
     template: `
     <section class="email-app-container">
         <email-side-bar></email-side-bar>
-        <email-list :emails="emailsToDisplay"></email-list>
+        <email-list :emails="emailsToDisplay" v-if="emails"></email-list>
     </section>`,
     data() {
         return {

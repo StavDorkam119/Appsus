@@ -1,6 +1,9 @@
 
 .email-details-container {
-    /* padding-top: 1.5em; */
+    position: absolute;
+    top: 70.6px;
+    height: calc(100% - 70.6px);
+    width: 100%;
 }
 
 .crud-buttons {
