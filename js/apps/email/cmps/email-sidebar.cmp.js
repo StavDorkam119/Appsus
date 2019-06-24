@@ -13,7 +13,6 @@ export default {
         <button @click="updateFilterNone"><i class="fas fa-envelope-open-text"></i>Inbox</button>
         <button @click="updateFilterStarred"><i class="fas fa-star"></i>Starred</button>
         <button @click="updateFilterSent"><i class="fas fa-paper-plane"></i>Sent</button>
-        <button @click="updateFilterDraft"><i class="fas fa-file"></i>Draft</button>
         <progress-bar></progress-bar>
     </section>`,
     data () {
@@ -42,10 +41,7 @@ export default {
         },
         updateFilterSent() {
             eventBus.$emit('update-filter', 'sent');
-        },
-        updateFilterDraft() {
-            eventBus.$emit('update-filter', 'draft');
-        },
+        }
     },
     computed: {
         mobileNav() {
