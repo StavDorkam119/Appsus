@@ -139,39 +139,46 @@ export default {
         },
         saveKeep() {
             eventBus.$emit('add-data', this.keep);
-            if(this.keep.type === 'note')
-            if () {
-                alert('Your keep is empty and will not be saved');
-                this.$router.push('/keep/main')
-                return;
+            if (this.keep.type === 'note') {
+                if (!this.keep.data.content) {
+                    alert('Your keep is empty and will not be saved');
+                    this.$router.push('/keep/main')
+                    return;
+                }
             }
             else {
+                if (this.keep.data.length === 0) {
+                    alert('Your keep is empty and will not be saved');
+                    this.$router.push('/keep/main')
+                    return;
+                }
+            }
             this.keep.date = Date.now()
-                keepService.addKeep(this.keep)
-                this.initialize()
-                this.$router.push('/keep/main')
+            keepService.addKeep(this.keep)
+            this.initialize()
+            this.$router.push('/keep/main')
+
+        },
+
+        addDataToKeep(data) {
+            this.keep.data = data;
+        },
+        initialize() {
+            eventBus.$emit('delete-data', this.keep);
+            this.keep = keepService.getEmptyKeep()
+            this.titleBeforeEdit = '';
+        },
+        deleteKeep() {
+            this.initialize()
         }
-    },
 
-    addDataToKeep(data) {
-        this.keep.data = data;
     },
-    initialize() {
-        eventBus.$emit('delete-data', this.keep);
-        this.keep = keepService.getEmptyKeep()
-        this.titleBeforeEdit = '';
+    computed: {
+
     },
-    deleteKeep() {
-        this.initialize()
-    }
-
-},
-computed: {
-
-},
-components: {
-    checkList,
+    components: {
+        checkList,
         note
-}
+    }
 }
 
