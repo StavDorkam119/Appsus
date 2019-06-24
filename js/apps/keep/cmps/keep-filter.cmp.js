@@ -2,7 +2,7 @@
 export default {
     template: `
         <section class="keep-filter flex">
-            <input type="search" v-model="filterBy.txt" @input="emitFilter" placeholder="Search keep..."/>
+            <input type="search" v-model="filterBy.txt" @input="emitFilter" placeholder="Search..."/>
         </section>
     `,
     data() {

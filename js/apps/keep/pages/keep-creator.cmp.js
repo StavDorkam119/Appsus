@@ -3,39 +3,40 @@ import eventBus from '../../../services/event-bus.service.js';
 import checkList from '../cmps/keep-checklist.cmp.js'
 import note from '../cmps/keep-note.cmp.js'
 
- 
+
 
 export default {
     name: 'keepCreator',
     template: `
-    <section class="keep-creator" :style="{backgroundColor: keep.bgColor}" >
-    <router-link to="/keep/main">
-        <div class="btn-back" @click="addKeep">
-        <i class="fas fa-arrow-left"></i>
-        </div>  
-    </router-link>
+    <section class="creator-container flex" >
+        <div class="btn-back" @click="saveKeep"><i class="fas fa-arrow-circle-left icon"></i></div>
+        <h2>My Keep</h2>
+        <div class="keep-creator" :style="{backgroundColor: keep.bgColor}" >
             <div v-if="keep.img" class="img-container">
                 <img :src="keep.img" /> 
             </div>
             
-        <div class="keep-title flex">
-            
-            <div v-if="keep.isEditing">
-                <input class="title-edit" type="text" placeholder="Title... " v-model="keep.title"
-                    @keyup.enter="stopEditing(keep)" @blur="stopEditing(keep)" @keyup.esc="cancleEditing(keep)" v-focus />
+            <div class="content-input">
+                <div class="keep-title flex" @click="editKeep(keep)">
+                    <div v-if="keep.isEditing">
+                        <input class="title-edit input-field" type="text" placeholder="Subject... " v-model="keep.title"
+                             @keyup.enter="stopEditing(keep)" @blur="stopEditing(keep)" @keyup.esc="cancleEditing(keep)" v-focus />
+                    </div> 
+
+                    <div v-else class="title-display" >
+                        <div class="input-field" v-if="keep.title">{{keep.title}} </div>
+                        <div v-else class="input-field">Subject...</div>     
+                    </div>
+                </div>
+                <component :is="keep.type" v-on:send-data="addDataToKeep"></component>
+                </div>
             </div>
-            <div v-else class="title-display" @click="editKeep(keep)">
-                <h3 v-if="keep.title">{{keep.title}} </h3>
-                 <h3 v-else >Keep Title:</h3>     
-        </div>
-        </div>
 
-            <component :is="keep.type" v-on:send-data="addDataToKeep"></component>
+        <input title="Image Address" v-if="imgType==='url'" type="text" v-model="keep.img" placeholder="Image address..." />
 
-
-            <div class="keep-menu">
+            <div class="creator-menu">
             <div class="checklist-icon" :class="{active : keep.type === 'checkList'}" @click="changeToCheckList">
-            <i class="fas fa-tasks"></i>
+            <i class="fas fa-tasks icon"></i>
             </div>
           
             
@@ -44,30 +45,30 @@ export default {
                
                 <div class="image-upload">
                 <label for="file-input">
-                <i class="fas fa-image"></i>
+                <i class="fas fa-image icon"></i>
                 </label>
                     <input id="file-input" type="file" @change="uploadNewImg" title="upload image"/>
                 </div>
 
                 <div class="color-picker">
                 <label for="color-input">
-                <i class="fas fa-palette" title="background color"></i>
+                <i class="fas fa-palette icon" title="background color"></i>
                 </label>
                     <input id="color-input" type="color" v-model="keep.bgColor" />
                 </div>
                
-
+                <div class="img-address"><i class="fas fa-link icon" @click="addImgUrl"></i></div>
+                
 
                 <div class="pin-icon" title="pin" @click="pinKeep" :class="{active : keep.isPined}">
-                <i class="fas fa-thumbtack"></i>
+                <i class="fas fa-thumbtack icon"></i>
                 </div>
                 <div class="btn-delete" title="delete" @click="deleteKeep">
-                <i class="far fa-trash-alt"></i>
+                <i class="far fa-trash-alt icon"></i>
                 </div>
             </div>
-        <router-link to="/keep/main">
-        <button class="add-keep-btn" @click="addKeep">Add Keep</button>
-        </router-link>
+        <button class="save-keep-btn" @click="saveKeep">Save</button>
+        
     </section>
     `,
 
@@ -77,6 +78,7 @@ export default {
         return {
             keep: null,
             titleBeforeEdit: '',
+            imgType: 'file'
         }
     },
     created() {
@@ -93,7 +95,7 @@ export default {
 
     methods: {
         changeToCheckList() {
-            if(this.keep.type === 'checkList') {
+            if (this.keep.type === 'checkList') {
                 this.keep.type = 'note'
             }
             else {
@@ -130,23 +132,29 @@ export default {
         addImageToKeep(img) {
             this.keep.img = img.src;
         },
-        addKeep() {
-            this.emitAddKeep()
-            // if (this.keep.data.length === 0 && !this.keep.title) {
-            //     let answer = confirm('are you sure? Your keep is empty');
-            //     if (answer || !answer) return; // TODO: fixed this
-                // else {
-                    this.keep.date = Date.now()
-                    keepService.addKeep(this.keep)
-                    this.initialize()
-                    //TODO: change router location from here
-                // }
+        addImgUrl() {
+            this.imgType = 'url'
+        },
+        saveKeep() {
+            eventBus.$emit('add-data', this.keep);
+            // if (this.keep.data && !this.keep.title) {
+            //     let answer = confirm('Your keep is empty and will not be saved');
+            //     if (!answer) return; // TODO: fixed this
+            //     else {
+            //         this.$router.push('/keep/main')
+            //         return;
+            //         //TODO: change router location from here
+            //     }
+            // }
+            // else {
+                this.keep.date = Date.now()
+                keepService.addKeep(this.keep)
+                this.initialize()
+                this.$router.push('/keep/main')
             // }
         },
-        emitAddKeep() {
-            eventBus.$emit('add-data', this.keep);
-        },
-        addDataToKeep(data) { 
+
+        addDataToKeep(data) {
             this.keep.data = data;
         },
         initialize() {

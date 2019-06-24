@@ -1,20 +1,21 @@
 
 import {utilService} from '../../../services/util.service.js';
 import keepPrev from './keep-prev.cmp.js';
-
+import {keepService} from '../../../services/keep.service.js';
+import eventBus from '../../../services/event-bus.service.js';
 
 export default {
     name: 'keepList', 
     template: `
     <section class="keep-list">
-        <div class="pined-container" v-for="keep in keeps" v-if="keep.isPined">
-            <div class="keep-item">
-                <keep-prev :keep="keep"></keep-prev>
+        <div class="pined-container grid">
+            <div v-for="(keep, idx) in keeps" v-if="keep.isPined" class="flex">
+                <keep-prev :keep="keep" :idx="idx"></keep-prev>
             </div>
         </div>    
-        <div class="keeps-container">
-            <div v-for="keep in keeps" class="keep-item" v-if="!keep.isPined">
-                <keep-prev :keep="keep"></keep-prev>
+        <div class="un-pined-container grid">
+            <div v-for="(keep, idx) in keeps" v-if="!keep.isPined">
+                <keep-prev :keep="keep" :idx="idx"></keep-prev>
             </div>
         </div>
     </section>
@@ -32,6 +33,7 @@ export default {
     },
   
     methods: {
+       
     },
     computed: {
         

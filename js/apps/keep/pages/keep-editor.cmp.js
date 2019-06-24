@@ -6,60 +6,78 @@ import note from '../cmps/keep-note.cmp.js'
 export default {
     name: 'keepEditor',
     template: `
-    <section class="keep-editor" v-if="keep" :style="{'backgroundColor': keep.bgColor}">
+    <section class="editor-container flex" v-if="keep">
+        <div class="btn-back" @click="saveKeep"><i class="fas fa-arrow-circle-left icon"></i></div>  
+        <h2>Editor</h2><i class="fas fa-pencil-alt icon" @click="editKeep(keep)"></i>
 
-    <h1>keepEditor</h1>
-    <router-link to="/keep/main">
-        <button class="btn-back" @click="addKeep">
-            <img src="https://img.icons8.com/ios/50/000000/circled-left-2-filled.png">
-        </button>  
-    </router-link>
+        <div class="keep-editor" v-if="keep" :style="{'backgroundColor': keep.bgColor}">
+            <div v-if="keep.img" class="img-container">
+                <img :src="keep.img" /> 
+            </div>
 
-    <div v-if="keep.img" class="img-container">
-        <img :src="keep.img" /> 
-    </div>
-
-    <div class="keep-title flex">
-     
-        <div v-if="keep.isEditing">
-            <input class="title-edit" type="text" placeholder="Title..." v-model="keep.title"
-                @keyup.enter="stopEditing(keep)" @blur="stopEditing(keep)" @keyup.esc="cancleEditing(keep)" />
+        <div v-if="keep.img" class="img-container">
+            <img :src="keep.img" /> 
         </div>
-        <div v-else class="title-display" @click="editKeep(keep)">
-        <h3 v-if="keep.title">{{keep.title}} </h3>
-            Title...   
+
+        <div class="content-input">
+                <div class="keep-title flex" @click="editKeep(keep)">
+                    <div v-if="keep.isEditing">
+                        <input class="title-edit input-field" type="text" placeholder="Subject... " v-model="keep.title"
+                             @keyup.enter="stopEditing(keep)" @blur="stopEditing(keep)" @keyup.esc="cancleEditing(keep)" v-focus />
+                    </div> 
+
+                    <div v-else class="title-display" >
+                        <div class="input-field" v-if="keep.title">{{keep.title}} </div>
+                        <div v-else class="input-field">Subject...</div>     
+                    </div>
+                </div>
+
+                <component :is="keep.type" :noteForEdit="keep.data" :checkListForEdit="keep.data" v-on:send-data="addDataToKeep"></component>
+
+                </div>
+            </div>
+
+        <input title="Image Address" v-if="imgType==='url'" type="text" v-model="keep.img" placeholder="Image address..." />
+    
+        <div class="editor-menu">
+        <div class="checklist-icon" :class="{active : keep.type === 'checkList'}" @click="changeToCheckList">
+        <i class="fas fa-tasks icon"></i>
         </div>
-    </div>
-    <component :is="keep.type" :noteForEdit="keep.data" :checkListForEdit="keep.data" v-on:send-data="addDataToKeep"></component>
-    <div class="keep-menu">
-    
-    <select v-model="keep.type" class="keep-type" title="type">
-    <option disabled value="">Select Type</option>
-    <option value="note">Note</option>
-    <option value="checkList">Checklist</option>
-    </select>
-    
-        <input type="color" v-model="keep.bgColor" class="color-picker" title="background color"/>
-        <input type="file" @change="uploadNewImg" title="upload image" />
-        <button class="btn-pin" title="pin" @click="pinKeep">
-        <img src="https://img.icons8.com/color/48/000000/pin3.png">
-        </button>
-        <button class="btn-delete" title="delete" @click="deleteKeep">
-        <img src="https://img.icons8.com/android/24/000000/trash.png">
-        </button>
-    </div>
-<router-link to="/keep/main">
-<button class="add-keep-btn" @click="addKeep">Add Keep</button>
-</router-link>
+      
+            <div class="image-upload">
+            <label for="file-input">
+            <i class="fas fa-image icon"></i>
+            </label>
+                <input id="file-input" type="file" @change="uploadNewImg" title="upload image"/>
+            </div>
 
-
-    
+            <div class="color-picker">
+            <label for="color-input">
+            <i class="fas fa-palette icon" title="background color"></i>
+            </label>
+                <input id="color-input" type="color" v-model="keep.bgColor" />
+            </div>
+           
+            <div class="img-address"><i class="fas fa-link icon" @click="addImgUrl"></i></div>
+            
+            <div class="pin-icon" title="pin" @click="pinKeep" :class="{active : keep.isPined}">
+            <i class="fas fa-thumbtack icon"></i>
+            </div>
+            <div class="btn-delete" title="delete" @click="deleteKeep">
+            <i class="far fa-trash-alt icon"></i>
+            </div>
+        </div>
+        
+    <button class="save-keep-btn" @click="saveKeep">Save</button>
     </section>
     `,
     props: [],
     data() {
         return {
-            keep: null
+            keep: null,
+            imgType: 'file',
+            lastContent: '',
+            checkList: []
         }
     },
     created() {
@@ -71,7 +89,6 @@ export default {
             console.log(this.keep);
             
         })
-        
     },
   
     directives: {
@@ -112,8 +129,11 @@ export default {
         addImageToKeep(img) {
             this.keep.img = img.src;
         },
-        addKeep() {
-            this.emitAddKeep()
+        addImgUrl() {
+            this.imgType = 'url'
+        },
+        saveKeep() {
+            eventBus.$emit('add-data', this.keep);
             // if (this.keep.data.length === 0 && !this.keep.title) {
             //     let answer = confirm('are you sure? Your keep is empty');
             //     if (answer || !answer) return; // TODO: fixed this
@@ -121,12 +141,10 @@ export default {
                     this.keep.date = Date.now()
                     keepService.saveKeep()
                     this.initialize()
+                    this.$router.push('/keep/main')
                     //TODO: change router location from here
                 // }
             // }
-        },
-        emitAddKeep() {
-            eventBus.$emit('add-data', this.keep);
         },
         addDataToKeep(data) { 
             this.keep.data = data;
@@ -138,8 +156,27 @@ export default {
         },
         deleteKeep() {
             this.initialize()
-        }
-
+        },
+        changeToCheckList() {
+            if (this.keep.type === 'checkList') {
+                console.log(this.keep.data);
+                this.checkList = this.keep.data;
+                this.checkList.forEach(item => {
+                    if(item.content) this.lastContent += item.content;
+                })
+                this.keep.type = 'note';
+                this.keep.data = keepService.getEmptyNote()
+                this.keep.data.content = this.lastContent;
+            }
+            else {
+                this.lastContent = this.keep.data.content;
+                console.log(this.lastContent);
+                this.keep.type = 'checkList';
+                this.checkList.push(keepService.getEmptyCheckItem())
+                this.keep.data = this.checkList;
+                this.keep.data[0].content = this.lastContent;
+            }
+        },
     },
     computed: {
 

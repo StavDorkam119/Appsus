@@ -4,21 +4,20 @@ import eventBus from '../../../services/event-bus.service.js';
 export default {
     name: 'note',
     template: `
-        <section class="note-container">
-        <div class="note-content flex">
-        <label class="note-lable">Note:</label>
+    <section class="note-container">
+    <div class="note-content flex" @click="editNote(note)">
         <div v-if="note.isEditing">
-            <textarea class="" type="text" v-model="note.content"
-                @keyup.enter="stopEditing(note)" @blur="stopEditing(note)" @keyup.esc="cancleEditing(note)" v-focus>
-                Enter note...
-                </textarea>
+            <textarea placeholder="Note..." class="input-field" type="text" v-model="note.content" @keyup.enter="stopEditing(note)"
+                @blur="stopEditing(note)" @keyup.esc="cancleEditing(note)" v-focus>
+                    Note...
+            </textarea>
         </div>
-        <div v-else class="note-display" @click="editNote(note)">
-            {{note.content}}
+            <div v-else class="note-display" >
+                <div v-if="note.content" class="input-field">{{note.content}} </div>
+                <div v-else class="input-field">Note...</div>
+            </div>
         </div>
-    </div>
-
-        </section>
+    </section>
     `,
 
     props: ['noteForEdit'],

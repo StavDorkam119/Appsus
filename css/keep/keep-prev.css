@@ -1,0 +1,93 @@
+ @font-face {
+    font-family: Karla-Italic;
+    src: url(../fonts/Karla/Karla-Italic.ttf);
+ }
+
+
+ /* ICONS */
+
+ .icon {
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: all .2s ease-in-out;
+    color: rgba(73, 73, 73, 0.986);
+    padding: 10px;
+}
+
+.icon:hover {
+    transform: scale(1.2);
+    color: rgb(0, 0, 0);
+}
+
+.pin.active {
+    color: rgb(180, 180, 180);
+}
+
+/* KEEP CONTAINER */
+ 
+.sticky {
+    transition: all .2s ease-in-out;
+    margin: 10px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    min-height: 150px;
+    font-family: "Comic Sans MS", "Comic Sans", "Chalkboard SE", "Comic Neue", cursive;
+    font-size: 14px;
+    color: #000;
+    box-shadow: -2px 3px 3px rgba(0,0,0,0.3);
+    cursor: pointer;
+}
+
+.sticky:hover {
+    box-shadow: -5px 15px 8px rgba(39, 39, 39, 0.726);
+}
+
+
+/* KEEP CONTENT */
+
+
+.keep-prev-title h3 {
+    margin: 0;
+}
+
+.sticky > *:not(:first-child) {
+      margin-top: 20px;
+}
+
+.keep-prev-top {
+    justify-content: space-between;
+}
+
+.img-container {
+    display: flex;
+}
+
+.img-container img {
+    width: 100%;
+}
+
+.content-container {
+    padding: 15px;
+    border: 1px solid rgba(141, 138, 138, 0.459);
+}
+
+.keep-bottom {
+    justify-content: space-between;
+}
+
+.keep-bottom > * {
+    margin-top: 5px;
+    font-family: Karla-Italic;
+    letter-spacing: 1px;
+    color: rgb(44, 43, 43);
+}
+
+.keeps-container {
+    align-items: flex-start;
+    flex-wrap: wrap-reverse;
+}
+
+
+
+  

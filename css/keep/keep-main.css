@@ -1,83 +1,100 @@
-.keeps-container {
+.un-pined-container {
     display: grid;
     grid-auto-flow: row dense;
     grid-template-columns: repeat( auto-fill, minmax(250px, 1fr));
     grid-gap: 5px;
+    margin-top: 40px;
+    z-index: 0;
 }
 
-.pined-container {
-    margin: 50px 0 100px;
+
+.main-menu-container {
+    justify-content: center;
+    align-items: center;
+    border-bottom: 1px solid rgba(139, 139, 139, 0.329);
+    margin: 20px;
 }
 
-.keep-item {
-   display: inline-flex;
+.main-menu-container > * {
+    margin: 20px;
+    font-size: 0.8rem;
 }
 
-.keep-prev {
-    display: inline-block;
-    border: 1px solid black;
-    margin: 5px;
-    padding: 20px;
-    width: 100%;
+.main-menu-container input, select {
+    padding: 5px;
+}
+
+
+.grid {
+    display: grid;
+    grid-auto-flow: row dense;
+    grid-template-columns: repeat( auto-fit, minmax(250px, 1fr));
+    grid-gap: 5px;
+    margin-top: 40px;
+}
+
+
+.new-keep-btn {
+    margin: 20px auto;
+    transition: all .2s ease-in-out;
+    padding: 10px;
+    width: 200px;
     text-align: center;
+    font-size: 2rem;
+    font-weight: lighter;
+    color: rgb(88, 88, 88);
+    border: 1px solid rgb(151, 151, 151);
+    box-shadow: 2px 2px 2px rgba(32, 32, 32, 0.575);
+    border-radius: 10px;
+    animation-duration: 2s;
+    animation-name: bounceIn;
+    background-color: rgb(255, 255, 255);
 }
 
-.keep-prev a {
+.new-keep-btn:hover {
+    box-shadow: 5px 5px 5px rgba(39, 39, 39, 0.726);
+}
+
+.keep-sort {
+    width: 100px;
+    margin: 0 auto;
+    display: block;
+    height: 20px;
+    margin-left: 10px;
+}
+
+.sort-container {
+    display: flex;
+    justify-content: center;
+}
+
+@keyframes bounceIn {
+    0% {
+      transform: scale(0.1);
+      opacity: 0;
+    }
+    60% {
+      transform: scale(1.2);
+      opacity: 1;
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+
+a {
     text-decoration: none;
     color: rgb(0, 0, 0);
 }
 
 
-.keep-creator {
-    color: black;
-    margin: 0 auto;
-    max-width: 500px;
-    padding: 20px;
-}
 
-.keep-editor {
-    color: black;
-    margin: 0 auto;
-    max-width: 500px;
-    padding: 20px;
-}
 
-.keep-editor  * {
-    margin: 5px;
-}
 
-.keep-creator > * {
-    margin: 5px;
-}
 
-.keep-creator input {
-    background-color: rgba(0, 0, 0, 0);
-    border: none;
-    padding: 5px;
-    font-size: 16px;
-    width: 300px;
-}
 
-.keep-editor input {
-    background-color: rgba(0, 0, 0, 0);
-    border: none;
-    padding: 5px;
-    font-size: 16px;
-    width: 300px;
-}
 
-.keep-menu {
-    background-color: rgba(0, 0, 0, 0);
-    display: flex;
-    align-items: center;
-    border: 1px solid rgb(92, 92, 92);
-    margin-top: 20px;
-}
 
-.keep-menu > * {
-    margin: 5px;
-    cursor: pointer;
-}
 
 .btn-back {
     cursor: pointer;
@@ -87,14 +104,7 @@
     cursor: pointer;
 }
 
-.keep-menu input{
-    width: 30px;
-}
 
-.keep-menu {
-    height: 30px;
-    padding: 0;
-}
 
 .btn-pin {
     cursor: pointer;
@@ -111,28 +121,6 @@
     justify-content: space-between;
 }
 
-.item-editor-container .item-edit {
-    margin: 0;
-    font-size: 16px;
-    align-self: center;
-}
-
-.item-editor-container{
-    width: 90%;
-}
-
-.keep-title .title-display {
-    width: 100%;
-    padding: 5px;
-}
-.keep-title {
-    align-items: center;
-}
-
-.title {
-    text-align: center;
-}
-
 
 
 label {
@@ -140,45 +128,13 @@ label {
     color: rgba(73, 73, 73, 0.815);
 }
 
-.keep-title > * {
-    margin: 5px;
-}
-
-.add-keep-btn {
-    background-color: rgb(71, 131, 187);
-    padding: 5px;
-    font-size: 20px;
-    cursor: pointer;
-}
-
-.note-content {
-    align-items: center;
-}
-.note-content > * {
-    margin: 5px;
-}
-
-.note-display {
-    width: 100%;
-    padding: 5px;
-}
 
 
-.item-editor-container .item-display {
-    margin: 0;
-    align-self: center;
-    padding: 5px;
-    width: 95%;
-}
 
-.item-editor-container .check-btn {
-    width: 15px;
-    align-self: center;
-}
 
-.item-editor-container input:focus {
-    /* outline: none;    */
-}
+
+
+
 
 .remove-btn {
     cursor: pointer;
@@ -197,8 +153,8 @@ label {
 }
 
 .img-container img {
-    display: flex;
-    width: 100%;
+    /* display: flex; */
+    width: 250px;
     margin: 0 auto;
 }
 

@@ -3,17 +3,24 @@ import { utilService } from '../../../services/util.service.js';
 import keepList from '../cmps/keep-list.cmp.js';
 import keepFilter from '../cmps/keep-filter.cmp.js';
 import keepSort from '../cmps/keep-sort.cmp.js';
+import eventBus from '../../../services/event-bus.service.js';
 
 
 export default {
     name: 'mainApp',
     template: `
     <section class="keep-main">
-        <h1>Main</h1>
-        <router-link to="/keep/creator"> Create keep </router-link>
-        <keep-filter v-on:filtered="setFilter"></keep-filter>
-        <keep-sort v-on:sorted="setSort" ></keep-sort>
+
+
+        <div class="main-menu-container flex wrap"> 
+            <keep-filter v-on:filtered="setFilter"></keep-filter>
+            <keep-sort v-on:sorted="setSort" ></keep-sort>
+        </div>
+        <router-link to="/keep/creator">
+            <div class="new-keep-btn">+</div>
+        </router-link>
         <keep-list :keeps="keepsForDisplay"></keep-list>
+       
     </section>
     `,
     data() {
@@ -34,7 +41,9 @@ export default {
         },
         setSort(value) {
             console.log('setting sort', value);
-            
+        },
+        deleteKeep(idx){
+            keepService.deleteKeep(idx)
         }
     },
     computed: {
@@ -49,6 +58,7 @@ export default {
         keepSort
     },
     created() {
+        eventBus.$on('deleted', this.deleteKeep);
         keepService.query()
             .then(res => this.keeps = res)
     }

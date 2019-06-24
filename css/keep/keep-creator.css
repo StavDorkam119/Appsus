@@ -1,6 +1,83 @@
+@font-face {
+    font-family:eurof;
+    src: url(../fonts/Eurofurence/eurof_tt.txt);
+ }
+
+ @font-face {
+    font-family:Karla;
+    src: url(../fonts/Karla/Karla-Bold.ttf);
+ }
+
+.creator-container {
+    color: rgb(80, 79, 79);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    font-family:eurof ;
+    letter-spacing: 1px;
+    max-width: 400px;
+    padding: 20px;
+    position: relative;
+    border: 1px solid rgb(156, 156, 156);
+    margin: 20px auto;
+    box-shadow: -2px 3px 3px rgba(0,0,0,0.3);
+
+}
+
+.creator-container h2 {
+    margin-top: 40px;
+    text-align: center;
+}
+
+.creator-container > * {
+    margin: 5px;
+}
+
+.keep-creator  {
+    margin-top: 20px;
+    width: 80%;
+    border: 1px solid rgb(156, 156, 156);
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    right: 0;
+    min-height: 300px;
+    font-family: Karla;
+    font-size: 14px;
+    color: #000;
+    cursor: pointer;
+}
+
+
+.creator-menu {
+    background-color: rgba(0, 0, 0, 0);
+    display: flex;
+    position: sticky;
+    align-items: center;
+    justify-content: space-between;
+    border: 1px solid rgba(148, 143, 143, 0.767);
+    border-radius: 5px;
+    margin-top: 20px;
+    max-width: 300px;
+    padding: 5px;
+}
+
+.creator-menu > * {
+    /* margin: 5px; */
+    cursor: pointer;
+}
+
+.creator-menu input {
+    width: 30px;
+}
+
+
+
+
 .image-upload > input {
     display: none;
-}
+} 
 
 .image-upload i {
     cursor: pointer;
@@ -16,30 +93,84 @@
     color: rgb(82, 82, 82);
 }
 
-.checklist-icon {
-    color: rgb(82, 82, 82);
-}
 
-.pin-icon {
-    color: rgb(82, 82, 82);
-}
+
+
 
 .pin-icon.active {
     color: black;
     font-weight: bold;
 } 
 
-.checklist-icon.active {
-    color: black;
+.icon.active {
+    color: rgb(25, 201, 48);
     font-weight: bold;
 }
 
 .btn-back {
-    color: black;
+    left: 0;
+    top: 0;
+    position: absolute;
 } 
+
+.save-keep-btn {
+    background-color: rgba(26, 138, 23, 0.877);
+    color: white;
+    border-radius: 5px;
+    border: 1px solid rgb(70, 70, 70);
+    padding: 10px;
+    font-size: 20px;
+    cursor: pointer;
+    margin-top: 20px;
+    font-family: eurof;
+    letter-spacing: 1px;
+    transition: all .2s ease-in-out;
+}
+
+.save-keep-btn:hover {
+    background-color: rgba(46, 175, 41, 0.808);
+}
 
 textarea {
 background-color: rgba(255, 255, 255, 0);
-padding: 10px;
-width: 300px;
+}
+
+.input-field {
+    /* border: 1px solid rgba(112, 112, 112, 0.726); */
+    padding: 10px;  
+    font-size: 16px;
+    font-family:Karla;
+    width: 100%;
+    color: rgb(75, 74, 74);
+    margin: 5px;
+}
+
+.input-field input {
+    border: 1px solid rgba(112, 112, 112, 0.726);
+    padding: 10px;
+    font-size: 16px;
+    font-family:Karla;
+    width: 100%;
+    margin: 5px;
+    background-color: rgba(0, 0, 0, 0);
+    display: flex;
+
+}
+
+.content-input input {
+    border: 1px solid rgba(112, 112, 112, 0.726);
+    background-color: rgba(0, 0, 0, 0);
+    display: flex;
+}
+
+
+.content-input textarea {
+    border: 1px solid rgba(112, 112, 112, 0.726);
+    background-color: rgba(0, 0, 0, 0);
+    padding: 10px;
+    font-size: 16px;
+    font-family:Karla;
+    width: 100%;
+    display: flex;
+    min-height: 200px;
 }

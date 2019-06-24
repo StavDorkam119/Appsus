@@ -5,20 +5,20 @@ export default {
     name: 'checkList',
     template: `
     <section class="checklist-container" >
-    <div class="add-icon">+</div>
+    
 
-    <input type="text" placeholder="Add Item..." 
+    <input type="text" placeholder="☑  Add Item..."  class="input-field"
         v-model="txt" @keyup.enter="addItem"  @blur="addItem"/>
     <div class="item-container flex" v-for="(item, idx) in checkList" :key="item.id">
             <div class="item-editor-container flex">
                 <input type="checkbox" class="check-btn" v-model="item.isDone"/>
                 <div v-if="item.isEditing">
-                <input class="item-edit" type="text" v-model="item.content" 
+                <input class="item-edit input-field" type="text" v-model="item.content" 
                     @keyup.enter="stopEditing(item, idx)" 
                     @blur="stopEditing(item, idx)" @keyup.esc="cancleEditing(item)"
                 v-focus/>
                 </div>
-                <div class="item-display" :class="{line : item.isDone}" v-else @click="editItem(item)">
+                <div class="input-field" :class="{line : item.isDone}" v-else @click="editItem(item)">
                 {{item.content}}</div>
             </div>    
             <div class="remove-btn" @click="removeItem(idx)">&times</div>
