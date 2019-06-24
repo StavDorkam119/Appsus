@@ -1,4 +1,3 @@
-
 .email-maker-container {
     width: 80vw;
     height: 600px;
@@ -56,8 +55,8 @@
     cursor: pointer;
 }
 
-.email-maker-container button:active, 
-.email-maker-container button:hover  {
+.email-maker-container button:active,
+.email-maker-container button:hover {
     background: #41be41;
 }
 

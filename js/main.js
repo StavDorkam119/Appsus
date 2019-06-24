@@ -30,5 +30,5 @@ var app = new Vue({
     components: {
         appHeader,
     },
-    router: theRoutes 
+    router: theRoutes
 })

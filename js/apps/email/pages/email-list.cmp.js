@@ -1,7 +1,8 @@
-
 import emailPreview from '../cmps/email-preview.cmp.js';
 import emailFilter from '../cmps/email-filter.cmp.js';
-import {utilService} from '../../../services/util.service.js';
+import {
+    utilService
+} from '../../../services/util.service.js';
 
 
 export default {
@@ -12,7 +13,7 @@ export default {
             <email-preview v-for="(email, idx) in emails" :key="idx" :email="email"></email-preview>
     </section>`,
     props: ['emails'],
-    created () {
+    created() {
         window.addEventListener('resize', () => {
             if (utilService.checkIfMobile()) this.mobileMode = true;
             else this.mobileMode = false;
@@ -20,7 +21,7 @@ export default {
         if (utilService.checkIfMobile()) this.mobileMode = true;
         else this.mobileMode = false;
     },
-    data () {
+    data() {
         return {
             mobileMode: false
         }

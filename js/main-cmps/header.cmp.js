@@ -5,7 +5,9 @@ import {
 } from '../../data/filters.js';
 
 
-import {utilService} from '../services/util.service.js';
+import {
+    utilService
+} from '../services/util.service.js';
 
 import eventBus from '../event-bus.js';
 
@@ -62,14 +64,14 @@ export default {
             showMobileIcons: false
         }
     },
-    created () {
+    created() {
         this.checkMobileMode();
         window.addEventListener('resize', this.checkMobileMode);
         this.checkForFilter(this.$route)
     },
     methods: {
         checkMobileMode() {
-            if (utilService.checkIfMobile()) this.mobileMode = true; 
+            if (utilService.checkIfMobile()) this.mobileMode = true;
             else this.mobileMode = false;
             if (window.innerWidth <= 990) this.showMobileIcons = true;
             else this.showMobileIcons = false;
@@ -77,14 +79,13 @@ export default {
         toggleMenu() {
             this.showMobileMenu = !this.showMobileMenu;
         },
-        toggleSidebar () {
+        toggleSidebar() {
             eventBus.$emit('show-sidebar')
         },
         checkForFilter(route) {
             if (route.path.includes('/email')) {
                 this.filter = filters.cmps.find(filter => filter.type === 'email');
-            } 
-            else (this.filter) = null;
+            } else(this.filter) = null;
         },
         goToHome() {
             this.$router.push('/');
@@ -92,7 +93,7 @@ export default {
     },
     computed: {
         menuClass() {
-            if (this.showMobileMenu) return 'show-nav-links-header'; 
+            if (this.showMobileMenu) return 'show-nav-links-header';
         },
         sideBarIcon() {
             if (this.mobileMode && this.$route.path.includes('/email')) return true;

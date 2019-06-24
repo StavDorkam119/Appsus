@@ -1,4 +1,3 @@
-
 export default {
     template: `
         <section class="keep-filter flex">
@@ -14,7 +13,9 @@ export default {
     },
     methods: {
         emitFilter() {
-            this.$emit('filtered', { txt: this.filterBy.txt });
+            this.$emit('filtered', {
+                txt: this.filterBy.txt
+            });
         }
     }
 

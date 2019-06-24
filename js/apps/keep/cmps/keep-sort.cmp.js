@@ -1,4 +1,3 @@
-
 export default {
     template: `
         <section class="sort-container">
@@ -10,7 +9,7 @@ export default {
     `,
     data() {
         return {
-           sortBy: ''
+            sortBy: ''
         }
     },
     methods: {

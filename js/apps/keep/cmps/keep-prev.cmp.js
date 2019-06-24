@@ -1,4 +1,3 @@
-
 import eventBus from '../../../event-bus.js';
 
 export default {
@@ -47,7 +46,7 @@ export default {
 
     </section>
     `,
-   
+
     props: ['keep', 'idx'],
 
     data() {
@@ -58,8 +57,8 @@ export default {
     },
     created() {
         this.currKeep = this.keep;
-    }, 
-  
+    },
+
     methods: {
         goToEdit() {
             this.$router.push(`editor/${this.keep.id}`)
@@ -71,12 +70,16 @@ export default {
             eventBus.$emit('deleted', this.idx);
             this.currKeep = null;
         },
-       sendToEmail() {
-           this.$router.push('/email/compose');
-           setTimeout(()=> {
-               eventBus.$emit('send-to-email', {title:this.keep.title, type:this.keep.type, data:this.keep.data})
-           }, 0)
-       }
+        sendToEmail() {
+            this.$router.push('/email/compose');
+            setTimeout(() => {
+                eventBus.$emit('send-to-email', {
+                    title: this.keep.title,
+                    type: this.keep.type,
+                    data: this.keep.data
+                })
+            }, 0)
+        }
     },
     computed: {
         keepUrl() {
@@ -86,9 +89,9 @@ export default {
             return new Date(this.keep.date).toDateString()
         }
     },
-    components: {
-    }
+    components: {}
 }
 
 
-{/* <i class="fas fa-user-plus icon" @click.stop="sendToEmail"></i> */}
+{
+    /* <i class="fas fa-user-plus icon" @click.stop="sendToEmail"></i> */ }

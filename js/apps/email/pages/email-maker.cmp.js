@@ -1,11 +1,14 @@
-
-import {utilService} from '../../../services/util.service.js';
-import {emailService} from '../../../services/email.service.js';
+import {
+    utilService
+} from '../../../services/util.service.js';
+import {
+    emailService
+} from '../../../services/email.service.js';
 import eventBus from '../../../event-bus.js';
 
 export default {
     name: 'EmailMaker',
-    template:`
+    template: `
     <section class="email-maker-container">
         <h2>New Message</h2>
         <input type="text" placeholder="To:" autofocus v-model="composedEmail.name"/>
@@ -21,15 +24,15 @@ export default {
         const emailId = this.$route.params.emailId;
         if (emailId) {
             emailService.getEmailById(emailId)
-            .then(emailToReplyTo => {
-                this.composedEmail.name = 'To: ' + emailToReplyTo.name;
-                this.composedEmail.subject = 'Re: ' + emailToReplyTo.subject;
-                this.composedEmail.body = emailToReplyTo.body
-            })
+                .then(emailToReplyTo => {
+                    this.composedEmail.name = 'To: ' + emailToReplyTo.name;
+                    this.composedEmail.subject = 'Re: ' + emailToReplyTo.subject;
+                    this.composedEmail.body = emailToReplyTo.body
+                })
         }
         eventBus.$on('send-to-email', this.receiveKeep)
     },
-    data () {
+    data() {
         return {
             composedEmail: {
                 name: '',

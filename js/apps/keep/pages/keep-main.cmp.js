@@ -1,4 +1,6 @@
-import { keepService } from '../../../services/keep.service.js';
+import {
+    keepService
+} from '../../../services/keep.service.js';
 import keepList from '../cmps/keep-list.cmp.js';
 import keepFilter from '../cmps/keep-filter.cmp.js';
 import keepSort from '../cmps/keep-sort.cmp.js';
@@ -39,7 +41,7 @@ export default {
         setSort(value) {
             console.log('setting sort', value);
         },
-        deleteKeep(idx){
+        deleteKeep(idx) {
             keepService.deleteKeep(idx)
         }
     },
@@ -60,7 +62,3 @@ export default {
             .then(res => this.keeps = res)
     }
 }
-
-
-
-

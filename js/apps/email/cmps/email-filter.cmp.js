@@ -24,8 +24,7 @@ export default {
             if (update === 'none') {
                 this.filter.showSent = false;
                 this.filter.isStarredOn = false;
-            }
-            else if (update === 'starred') this.filter.isStarredOn = true;
+            } else if (update === 'starred') this.filter.isStarredOn = true;
             else if (update === 'sent') this.filter.showSent = true;
         })
     },
@@ -48,7 +47,7 @@ export default {
         'filter': {
             handler(filter) {
                 // debugger;
-                
+
                 eventBus.$emit('filter-emails', filter);
             },
             deep: true

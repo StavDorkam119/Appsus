@@ -1,4 +1,6 @@
-import { keepService } from '../../../services/keep.service.js';
+import {
+    keepService
+} from '../../../services/keep.service.js';
 import eventBus from '../../../event-bus.js';
 import checkList from '../cmps/keep-checklist.cmp.js'
 import note from '../cmps/keep-note.cmp.js'
@@ -99,8 +101,7 @@ export default {
         changeToCheckList() {
             if (this.keep.type === 'checkList') {
                 this.keep.type = 'note'
-            }
-            else {
+            } else {
                 this.keep.type = 'checkList'
             }
         },

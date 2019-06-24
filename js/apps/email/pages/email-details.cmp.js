@@ -2,7 +2,9 @@ import {
     emailService
 } from '../../../services/email.service.js';
 
-import {utilService} from '../../../services/util.service.js';
+import {
+    utilService
+} from '../../../services/util.service.js';
 
 import eventBus from '../../../event-bus.js';
 

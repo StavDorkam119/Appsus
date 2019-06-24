@@ -1,4 +1,6 @@
-import {keepService} from '../../../services/keep.service.js';
+import {
+    keepService
+} from '../../../services/keep.service.js';
 import eventBus from '../../../event-bus.js';
 
 export default {
@@ -37,7 +39,7 @@ export default {
         }
     },
     created() {
-        if(this.checkListForEdit) {
+        if (this.checkListForEdit) {
             this.checkList = this.checkListForEdit;
         }
         this.currItem = keepService.getEmptyCheckItem()
@@ -58,7 +60,7 @@ export default {
         updateContent() {
             console.log();
         },
-     
+
         addItem() {
             if (!this.txt) return;
             this.currItem.content = this.txt;
@@ -72,12 +74,12 @@ export default {
         },
         editItem(item) {
             this.contentBeforeEdit = item.content;
-            item.isEditing = true;  
+            item.isEditing = true;
         },
         stopEditing(item, idx) {
-            if(!item.content) this.removeItem(idx)
+            if (!item.content) this.removeItem(idx)
             else {
-                item.isEditing = false; 
+                item.isEditing = false;
             }
         },
         cancleEditing(item) {
@@ -86,11 +88,10 @@ export default {
             item.isEditing = false;
         },
         addCheckList(keep) {
-            if(keep.type === 'checkList') {
+            if (keep.type === 'checkList') {
                 this.emitCheckList();
                 this.initialize();
-            }
-            else return;
+            } else return;
         },
         emitCheckList() {
             this.$emit('send-data', this.checkList)
@@ -102,7 +103,7 @@ export default {
         }
     },
     computed: {
-     
+
     },
     components: {
 

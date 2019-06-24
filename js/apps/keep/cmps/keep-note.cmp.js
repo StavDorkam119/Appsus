@@ -1,4 +1,6 @@
-import { keepService } from '../../../services/keep.service.js';
+import {
+    keepService
+} from '../../../services/keep.service.js';
 import eventBus from '../../../event-bus.js';
 
 export default {
@@ -29,10 +31,9 @@ export default {
         }
     },
     created() {
-        if(this.noteForEdit) {
+        if (this.noteForEdit) {
             this.note = this.noteForEdit
-        }
-        else this.note = keepService.getEmptyNote()
+        } else this.note = keepService.getEmptyNote()
         eventBus.$on('add-data', this.addNote);
         eventBus.$on('delete-data', this.initialize)
         // console.log(this.note)
@@ -62,19 +63,17 @@ export default {
             if (keep.type === 'note') {
                 this.emitNote();
                 this.initialize();
-            }
-            else return;
+            } else return;
         },
         emitNote() {
             this.$emit('send-data', this.note)
         },
-        initialize(){
+        initialize() {
             this.note = keepService.getEmptyNote()
             this.contentBeforeEdit = '';
         }
     },
-    computed: {
-    },
+    computed: {},
     components: {
 
     }

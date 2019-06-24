@@ -62,7 +62,7 @@ export default {
         firstNameIni() {
             return this.email.name[0];
         }
-        
+
     },
     components: {}
 }
