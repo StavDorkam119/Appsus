@@ -1,10 +1,10 @@
 @font-face {
-    font-family: eurof;
-    src: url(../fonts/Eurofurence/eurof_tt.txt);
+    font-family: 'Euro', sans-serif;
+    src: url(../fonts/Eurofurence/eurof_tt.ttf);
 }
 
 @font-face {
-    font-family: Karla;
+    font-family: 'Karla';
     src: url(../fonts/Karla/Karla-Bold.ttf);
 }
 
@@ -22,7 +22,7 @@
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    font-family: eurof;
+    font-family: 'Euro', sans-serif;
     letter-spacing: 1px;
     max-width: 400px;
     padding: 20px;
@@ -48,8 +48,13 @@
     display: flex;
     flex-direction: column;
     right: 0;
+<<<<<<< HEAD
     min-height: 350px;
     font-family: Karla;
+=======
+    min-height: 300px;
+    font-family: 'Karla';
+>>>>>>> b9469bd68cf036c4e97ab7f796d9bb3630719d0d
     font-size: 14px;
     color: #000;
     cursor: pointer;
@@ -133,7 +138,11 @@
     font-size: 20px;
     cursor: pointer;
     margin-top: 20px;
+<<<<<<< HEAD
     font-family: 'Pacifico';
+=======
+    font-family: 'Euro', sans-serif;
+>>>>>>> b9469bd68cf036c4e97ab7f796d9bb3630719d0d
     letter-spacing: 1px;
     transition: all .2s ease-in-out;
 }
@@ -150,7 +159,7 @@ textarea {
     /* border: 1px solid rgba(112, 112, 112, 0.726); */
     padding: 10px;
     font-size: 16px;
-    font-family: Karla;
+    font-family: 'Karla';
     width: 100%;
     color: rgb(75, 74, 74);
     margin: 5px;
@@ -160,7 +169,7 @@ textarea {
     border: 1px solid rgba(112, 112, 112, 0.726);
     padding: 10px;
     font-size: 16px;
-    font-family: Karla;
+    font-family: 'Karla';
     width: 100%;
     margin: 5px;
     background-color: rgba(0, 0, 0, 0);
@@ -180,7 +189,7 @@ textarea {
     background-color: rgba(0, 0, 0, 0);
     padding: 10px;
     font-size: 16px;
-    font-family: Karla;
+    font-family: 'Karla';
     width: 100%;
     display: flex;
     min-height: 200px;

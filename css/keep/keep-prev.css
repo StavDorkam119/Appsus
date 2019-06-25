@@ -1,5 +1,5 @@
  @font-face {
-     font-family: Karla-Italic;
+     font-family: 'Karla-Italic';
      src: url(../fonts/Karla/Karla-Italic.ttf);
  }
 
@@ -82,7 +82,7 @@
 
  .keep-bottom > * {
      margin-top: 5px;
-     font-family: Karla-Italic;
+     font-family: 'Karla-Italic';
      letter-spacing: 1px;
      color: rgb(44, 43, 43);
  }

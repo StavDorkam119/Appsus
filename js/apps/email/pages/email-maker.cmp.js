@@ -59,7 +59,6 @@ export default {
         },
         receiveKeep(keep) {
             if (keep) {
-                console.log(keep);
                 if (keep.title) this.composedEmail.subject = keep.title;
                 if (keep.type === 'note') this.composedEmail.body = keep.data.content;
                 else if (keep.type === 'checkList') {
