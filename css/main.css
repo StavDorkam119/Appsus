@@ -1,10 +1,7 @@
 /* Font Families */
 @import url("nucleo-style.css");
 @import './header.css';
-<<<<<<< HEAD
 @import './home/home-main.css';
-=======
->>>>>>> b9469bd68cf036c4e97ab7f796d9bb3630719d0d
 
 /* KEEP */
 @import './keep/keep-main.css';
