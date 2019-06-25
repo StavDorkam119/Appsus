@@ -8,18 +8,15 @@ import note from '../cmps/keep-note.cmp.js'
 export default {
     name: 'keepEditor',
     template: `
-    <section class="editor-container flex" v-if="keep">
-        <div class="btn-back" @click="saveKeep"><i class="fas fa-arrow-circle-left icon"></i></div>  
-        <h2>Editor</h2><i class="fas fa-pencil-alt icon" @click="editKeep(keep)"></i>
+    <section class="editor-body">
+    <div class="editor-container flex" v-if="keep">
+        <div class="btn-back" @click="saveKeep"><i class="fas fa-chevron-left icon"></i></div>  
+        <div class="flex edit"><h2>Editor</h2><i class="fas fa-pencil-alt icon" @click="editKeep(keep)"></i></div>
 
         <div class="keep-editor" v-if="keep" :style="{'backgroundColor': keep.bgColor}">
             <div v-if="keep.img" class="img-container">
                 <img :src="keep.img" /> 
             </div>
-
-        <div v-if="keep.img" class="img-container">
-            <img :src="keep.img" /> 
-        </div>
 
         <div class="content-input">
                 <div class="keep-title flex" @click="editKeep(keep)">
@@ -39,7 +36,7 @@ export default {
                 </div>
             </div>
 
-        <input title="Image Address" v-if="imgType==='url'" type="text" v-model="keep.img" placeholder="Image address..." />
+        <input title="Image Address" class="image-input" v-if="imgType==='url'" type="text" v-model="keep.img" placeholder="Image address..." />
     
         <div class="editor-menu">
         <div class="checklist-icon" :class="{active : keep.type === 'checkList'}" @click="changeToCheckList">
@@ -71,6 +68,7 @@ export default {
         </div>
         
     <button class="save-keep-btn" @click="saveKeep">Save</button>
+    </div>
     </section>
     `,
     props: [],
@@ -89,7 +87,6 @@ export default {
                 .then(keep => {
                     this.keep = keep
                     this.keep.isEditing = true;
-                    console.log(this.keep);
                 })
         }
         eventBus.$on('send-email-to-keep', (email) => {

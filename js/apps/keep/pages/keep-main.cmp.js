@@ -12,12 +12,14 @@ export default {
     template: `
     <section class="keep-main">
         <div class="main-menu-container flex wrap"> 
+            <router-link to="/keep/creator">
+                <div class="new-keep-btn"> New Keep... <i class="fas fa-pencil-alt"></i></div>
+            </router-link>
             <keep-filter v-on:filtered="setFilter"></keep-filter>
-            <keep-sort v-on:sorted="setSort" ></keep-sort>
         </div>
-        <router-link to="/keep/creator">
-            <div class="new-keep-btn">+</div>
-        </router-link>
+       
+        
+      
         <keep-list :keeps="keepsForDisplay"></keep-list>
        
     </section>

@@ -10,14 +10,15 @@ import note from '../cmps/keep-note.cmp.js'
 export default {
     name: 'keepCreator',
     template: `
-    <section class="creator-container flex" >
-        <div class="btn-back" @click="saveKeep"><i class="fas fa-arrow-circle-left icon"></i></div>
+    <section class="creator-body">
+    <div class="creator-container flex">
+        <div class="btn-back" @click="saveKeep"><i class="fas fa-chevron-left icon"></i></div>
         <h2>My Keep</h2>
         <div class="keep-creator" :style="{backgroundColor: keep.bgColor}" >
             <div v-if="keep.img" class="img-container">
                 <img :src="keep.img" /> 
             </div>
-            
+             
             <div class="content-input">
                 <div class="keep-title flex" @click="editKeep(keep)">
                     <div v-if="keep.isEditing">
@@ -36,7 +37,7 @@ export default {
                 </div>
             </div>
 
-        <input title="Image Address" v-if="imgType==='url'" type="text" v-model="keep.img" placeholder="Image address..." />
+        <input title="Image Address" class="image-input" v-if="imgType==='url'" type="text" v-model="keep.img" placeholder="Image address..." />
 
             <div class="creator-menu">
             <div class="checklist-icon" :class="{active : keep.type === 'checkList'}" @click="changeToCheckList">
@@ -72,7 +73,7 @@ export default {
                 </div>
             </div>
         <button class="save-keep-btn" @click="saveKeep">Save</button>
-        
+        </div>
     </section>
     `,
 

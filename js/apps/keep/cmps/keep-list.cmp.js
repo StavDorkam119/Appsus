@@ -4,13 +4,15 @@ export default {
     name: 'keepList',
     template: `
     <section class="keep-list">
-        <div class="pined-container grid">
-            <div v-for="(keep, idx) in keeps" v-if="keep.isPined" class="flex">
+        <h4 v-if="isPinnedKeeps">#Pinned</h4>
+        <div class="pinned-container masonry">
+            <div v-for="(keep, idx) in keeps" v-if="keep.isPined" class="box">
                 <keep-prev :keep="keep" :idx="idx"></keep-prev>
             </div>
         </div>    
-        <div class="un-pined-container grid">
-            <div v-for="(keep, idx) in keeps" v-if="!keep.isPined">
+        <h4 v-if="isPinnedKeeps">#Other</h4>
+        <div class="masonry">
+            <div v-for="(keep, idx) in keeps" v-if="!keep.isPined" class="box">
                 <keep-prev :keep="keep" :idx="idx"></keep-prev>
             </div>
         </div>
@@ -24,14 +26,17 @@ export default {
 
         }
     },
-    created() {
-
+    created() {     
     },
 
     methods: {
 
     },
     computed: {
+        isPinnedKeeps() {
+            if(this.keeps) return this.keeps.some(keep => keep.isPined);
+        }
+        
 
     },
     components: {

@@ -8,7 +8,20 @@
     src: url(../fonts/Karla/Karla-Bold.ttf);
 }
 
-.editor-container {
+@font-face {
+    font-family: Lato-bold;
+    src: url(../../font/Pacifico/Pacifico-Regular.ttf);
+}
+
+.editor-body {
+    background: linear-gradient( rgba(233, 233, 233, 0.767), rgba(241, 235, 235, 0.473) ),url('../../imgs/keep-background.jpg');
+    background-repeat: no-repeat;
+    background-size:cover;
+    background-attachment: fixed;
+    margin: 0;
+}
+
+.editor-container { 
     color: rgb(80, 79, 79);
     display: flex;
     flex-direction: column;
@@ -19,10 +32,8 @@
     max-width: 400px;
     padding: 20px;
     position: relative;
-    border: 1px solid rgb(156, 156, 156);
-    margin: 20px auto;
-    box-shadow: -2px 3px 3px rgba(0, 0, 0, 0.3);
-
+    margin: 0 auto;
+    background-color: #fff;
 }
 
 .editor-container h2 {
@@ -37,7 +48,6 @@
 .keep-editor {
     margin-top: 20px;
     width: 80%;
-    border: 1px solid rgb(156, 156, 156);
     padding: 25px;
     display: flex;
     flex-direction: column;
@@ -47,6 +57,7 @@
     font-size: 14px;
     color: #000;
     cursor: pointer;
+    box-shadow: -2px 3px 3px rgba(0, 0, 0, 0.3);
 }
 
 
@@ -108,10 +119,11 @@
     left: 0;
     top: 0;
     position: absolute;
+    margin-left: 15px;
 }
 
 .save-keep-btn {
-    background-color: rgba(26, 138, 23, 0.877);
+    background-color: rgba(22, 81, 129, 0.877);
     color: white;
     border-radius: 5px;
     border: 1px solid rgb(70, 70, 70);
@@ -119,13 +131,23 @@
     font-size: 20px;
     cursor: pointer;
     margin-top: 20px;
-    font-family: eurof;
+    font-family: 'Pacifico';
     letter-spacing: 1px;
     transition: all .2s ease-in-out;
 }
 
 .save-keep-btn:hover {
-    background-color: rgba(46, 175, 41, 0.808);
+    background-color: rgba(81, 133, 175, 0.808);
+}
+
+.edit {
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+}
+
+.edit .icon {
+    padding-bottom: 0;
 }
 
 textarea {

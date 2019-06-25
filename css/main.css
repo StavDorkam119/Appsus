@@ -1,12 +1,11 @@
 /* Font Families */
 @import url("nucleo-style.css");
 @import './header.css';
-@import './home.css';
+@import './home/home-main.css';
 
 /* KEEP */
 @import './keep/keep-main.css';
 @import './keep/keep-editor.css';
-@import './keep/keep-list.css';
 @import './keep/keep-creator.css';
 @import './keep/keep-prev.css';
 
@@ -57,7 +56,6 @@ body {
     margin: 0;
     background-color: white;
     /* color: var(--fifth-color); */
-    font-family: 'Lato', sans-serif;
     height: 100%;
 }
 
